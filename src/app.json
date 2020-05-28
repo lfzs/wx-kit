@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "page/home/home",
+    "page/mine/mine",
+    "page/webview/webview"
+  ],
+  "subpackages": [
+    {
+      "root": "page-order",
+      "pages": [
+        "list/list"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "page/mine/mine": { "network": "all", "packages": ["page-order"] }
+  },
+  "window": {
+    "navigationBarTitleText": "mini-app",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#000",
+    "navigationStyle": "default",
+
+    "backgroundColor": "#f4f4f4",
+    "backgroundColorTop": "#f4f4f4",
+    "backgroundColorBottom": "#f4f4f4",
+    "backgroundTextStyle": "dark",
+
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 200,
+    "pageOrientation": "portrait"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#fff",
+    "backgroundColor": "#000",
+    "borderStyle": "black",
+    "position": "bottom",
+    "custom": false,
+    "list": [
+      {
+        "pagePath": "page/home/home",
+        "text": "首页"
+      },{
+        "pagePath": "page/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "usingComponents": {
+    "loading-screen": "/component/loading-screen/loading-screen",
+    "custom-page": "/component/custom-page/custom-page",
+    "item-card": "/component/item-card/item-card",
+    "img-icon": "/component/img-icon/img-icon",
+    "popup": "/component/popup/popup",
+    "popup-share": "/component/popup-share/popup-share",
+    "loading-more": "/component/loading-more/loading-more"
+  }
+}

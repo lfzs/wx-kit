@@ -1,0 +1,26 @@
+.slide-view {
+  display: flex;
+  justify-content: flex-end;
+  z-index: 101;
+
+  .content {
+    width: 100%;
+    flex: none;
+  }
+
+  .right {
+    flex: none;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+}
+
+.mask {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}

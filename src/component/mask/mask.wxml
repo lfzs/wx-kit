@@ -1,0 +1,3 @@
+<view class="mask custom-class {{ show && 'active' }}" catchtouchmove="noop" bindtap="onMask">
+  <slot />
+</view>

@@ -1,0 +1,19 @@
+{
+  "projectname": "输入项目名",
+  "setting": {
+    "es6": false,
+    "urlCheck": true,
+    "uglifyFileName": false,
+    "checkSiteMap": false,
+    "postcss": false,
+    "coverView": true,
+    "enhance": false,
+    "nodeModules": false,
+		"showShadowRootInWxmlPanel": false,
+    "minified": false
+  },
+  "miniprogramRoot": "./dist/",
+  "compileType": "miniprogram",
+  "libVersion": "2.11.0",
+  "appid": "输入appid"
+}

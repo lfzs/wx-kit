@@ -1,0 +1,80 @@
+<template wx:for="{{ components }}" wx:key="id" is="{{ item.name }}" data="{{ ...item.data, key: item.key, swiperIndex, itemsList }}" />
+
+<template name="custom-swiper">
+  <view class="swiper">
+    <swiper
+      autoplay="{{ false }}"
+      interval="{{ config.interval }}"
+      circular="{{ config.circular }}"
+      duration="{{ config.duration }}"
+      previous-margin="{{ config.previousMargin }}"
+      next-margin="{{ config.nextMargin }}"
+      easing-function="easeInOutCubic"
+      bindchange="swiperChange"
+      data-key="{{ key }}"
+      style="height: {{ config.height * 2 || 0 }}rpx; background-color: {{ config.backgroundColor }};"
+    >
+
+      <swiper-item wx:for="{{ data }}" wx:key="src">
+        <image class="image" src="{{ item.src }}" data-src="{{ item.src }}" data-url="{{ item.link }}" bindtap="nav" />
+      </swiper-item>
+    </swiper>
+
+    <view class="dots" wx:if="{{ config.indicatorDots }}">
+      <view class="dot" wx:for="{{ data }}" wx:key="src" style="background-color:{{ index === (swiperIndex[key] || 0) ? config.indicatorActiveColor : config.indicatorColor }}" />
+    </view>
+
+  </view>
+</template>
+
+<template name="custom-image">
+  <image wx:for="{{ data }}" wx:key="src" class="custom-image" src="{{ item.src }}" data-src="{{ item.src }}" data-url="{{ item.link }}" mode="widthFix" bindtap="nav" />
+</template>
+
+<template name="custom-video">
+  <video
+    class="custom-video"
+    style="height: {{ config.height * 2 || 0 }}rpx;"
+    src="{{ data[0].src }}"
+    enable-play-gesture
+    controls="{{ config.controls }}"
+    autoplay="{{ config.autoplay }}"
+    loop="{{ config.loop }}"
+    muted="{{ config.muted }}"
+    object-fit="{{ config.objectFit }}"
+    poster="{{ data[0].src }}?vframe/png/offset/1"
+  />
+  <!-- poster 需要符合 CDN 对应的格式，上例是七牛云的 -->
+</template>
+
+<template name="custom-contact-service">
+  <image wx:if="{{ config.text.length }}" class="custom-contact-service" bindtap="copyText" src="{{ data[0].src }}" data-text="{{ config.text }}" mode="widthFix" />
+
+  <button open-type="contact" class="custom-contact-service-button" wx:else>
+    <image class="custom-contact-service" src="{{ data[0].src }}" mode="widthFix" />
+  </button>
+</template>
+
+<template name="custom-block">
+  <view class="custom-block" style="height: {{ config.height * 2 || 0 }}rpx; background-color: {{ config.backgroundColor }}" />
+</template>
+
+<template name="custom-product-list">
+  <view class="custom-product-list" style="background-color: {{ config.backgroundColor }}">
+    <item-card wx:for="{{ itemsList[key].items }}" wx:key="id" item="{{ item }}" custom-class="item" url="/page/item/detail/detail?id={{ item.id }}" />
+  </view>
+</template>
+
+<template name="custom-scroll-x">
+  <scroll-view scroll-x class="custom-scroll-x">
+    <image
+      wx:for="{{ data }}"
+      wx:key="src"
+      src="{{ item.src }}"
+      data-src="{{ item.src }}"
+      data-url="{{ item.link }}"
+      bindtap="nav"
+      style="width:{{ config.width * 2 || 0 }}rpx; height: {{ config.height * 2 || 0 }}rpx; margin: 0 {{ config.paddingRight * 2 || 0 }}rpx 0 {{ config.paddingLeft * 2 || 0 }}rpx"
+    />
+  </scroll-view>
+</template>

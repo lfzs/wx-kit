@@ -1,0 +1,30 @@
+@barHeight: 30px;
+
+.nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: @barHeight;
+
+  .line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    transition: all 0.3s;
+    background-color: red;
+    border-radius: 3px;
+    transform: translateX(-50%);
+  }
+}
+
+.swiper {
+  padding-top: @barHeight;
+  height: 100vh;
+}
+
+.scroll-view {
+  height: 100%;
+}

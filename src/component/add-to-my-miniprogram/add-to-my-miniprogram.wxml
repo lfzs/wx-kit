@@ -1,0 +1,4 @@
+<view class="add-to-my-miniprogram {{ show && 'show' }}" style="right: {{ rightGap }}px; top: {{ totalHeight }}px;">
+  <view class="up" style="right: {{ upRight }}px;" />
+  <view class="tips">添加到「我的小程序」下次使用更方便</view>
+</view>

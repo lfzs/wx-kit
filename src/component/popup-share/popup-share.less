@@ -1,0 +1,47 @@
+.mask {
+  align-items: flex-end !important;
+}
+
+.items {
+  width: 100%;
+  height: 0;
+  transition: all 0.3s;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &.active {
+    height: 150px;
+  }
+
+  .title {
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+
+    .item {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .text {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 21px 15px 15px 15px;
+  }
+}

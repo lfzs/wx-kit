@@ -1,0 +1,2 @@
+<loading-screen />
+<web-view src="{{ path }}" />

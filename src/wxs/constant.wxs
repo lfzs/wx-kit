@@ -1,0 +1,9 @@
+var obj = {
+  'pending': '加载中',
+  'age': function(num) { return num + '岁' }
+}
+
+module.exports = function(key, args) {
+  var value = obj[key]
+  return typeof value === 'function' ? value(args) : value
+}
