@@ -1,0 +1,7 @@
+<view class="stepper">
+  <button class="min flex-center" disabled="{{ value <= min }}" bindtap="onMin">-</button>
+
+  <input type="number" class="number" value="{{ value }}" bindblur="onBlur" />
+
+  <button class="max flex-center" disabled="{{ value >= max }}" bindtap="onMax">+</button>
+</view>

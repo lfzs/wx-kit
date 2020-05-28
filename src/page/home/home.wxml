@@ -1,0 +1,3 @@
+<loading-screen>
+  <custom-page components="{{ homeStore.data.components }}" />
+</loading-screen>

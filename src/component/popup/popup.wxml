@@ -1,0 +1,9 @@
+<mask show="{{ show }}" bindmask="onClose">
+
+  <view class="popup">
+    <image src="{{ img }}" mode="widthFix" class="img" catchtap="onImg" />
+    <text wx:if="{{ saveBtn }}" class="save-btn" catchtap="onSave">保存图片</text>
+    <text wx:if="{{ closeBtn }}" class="close-btn" catchtap="onClose">关闭</text>
+  </view>
+
+</mask>

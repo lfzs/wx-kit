@@ -1,0 +1,16 @@
+// 提供给页面使用
+var LOCAL = {
+  zh: {
+    '姓名': '姓名',
+    '到场人数': function(num) { return '到场' + num + '人' }
+  },
+
+  en: {
+    '姓名': 'name',
+  },
+}
+
+module.exports = function(key, language, args) {
+  var value = LOCAL[language][key]
+  return typeof value === 'function' ? value(args) : value
+}

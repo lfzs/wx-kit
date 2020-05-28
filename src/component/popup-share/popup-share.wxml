@@ -1,0 +1,23 @@
+<mask show="{{ show }}" bindmask="onClose" custom-class="mask">
+
+  <view class="items {{ show && 'active' }}">
+    <view class="title">分享方式</view>
+
+    <view class="content">
+      <button open-type="share" bindtap="onClose" class="item" >
+        <img-icon name="icon-wechat" size="40" />
+        <text class="text">微信好友</text>
+      </button>
+
+      <view bindtap="onImg" class="item">
+        <img-icon name="icon-picture" size="40" />
+        <text class="text">保存图片</text>
+      </view>
+    </view>
+
+    <view class="icon-close">
+      <img-icon name="icon-close" ext="svg" size="10" />
+    </view>
+  </view>
+
+</mask>

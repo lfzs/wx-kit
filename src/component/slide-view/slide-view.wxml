@@ -1,0 +1,19 @@
+<view class="slide-view" style="position: {{ width === rightWidth ? 'relative' : 'static' }}" catchtap="onClose">
+
+  <view
+    class="content"
+    bindtouchstart="onStart"
+    bindtouchmove="onMove"
+    bindtouchend="onEnd"
+    bindtouchcancel="onEnd"
+  >
+    <slot />
+  </view>
+
+  <view class="right" style="max-width: {{ rightWidth * 2 }}rpx; width: {{ width * 2 }}rpx;">
+    <slot name="right" />
+  </view>
+
+</view>
+
+<view class="mask" wx:if="{{ width === rightWidth }}" bindtap="onClose" bindtouchstart="onClose" />

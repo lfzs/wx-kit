@@ -1,0 +1,57 @@
+.loading-screen {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  color: #bfbfbf;
+
+  .loading,
+  .auth,
+  .error,
+  .retry {
+    height: 100.1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .auth {
+    .icon-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 50px;
+    }
+
+    .button {
+      width: 180px;
+      height: 40px;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: @wxGreen;
+      color: #fff;
+    }
+  }
+
+  .retry {
+    .icon-disconnect {
+      width: 45px;
+      height: 45px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .error {
+    .icon-404 {
+      width: 45px;
+      height: 43px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .loading {
+    .icon-loading {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

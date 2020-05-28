@@ -1,0 +1,5 @@
+<image
+  src="/image/{{ name }}.{{ ext }}"
+  style="display: flex; width: {{ size * 2 }}rpx; height:{{ size * 2 }}rpx;"
+  class="custom-class"
+/>

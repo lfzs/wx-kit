@@ -1,0 +1,72 @@
+{
+  "name": "mini-kit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development gulp dev",
+    "staging": "cross-env NODE_ENV=staging gulp build",
+    "build": "cross-env NODE_ENV=production gulp build",
+    "deploy:staging": "cross-env NODE_ENV=staging node script/miniprogram-ci.js",
+    "deploy:production": "cross-env NODE_ENV=production node script/miniprogram-ci.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    },
+    "commit-msg": "echo $HUSKY_GIT_PARAMS"
+  },
+  "lint-staged": {
+    "*.less": "stylelint",
+    "*.js": "eslint"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
+    "@babel/plugin-proposal-private-methods": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "autoprefixer": "^9.7.6",
+    "babel-eslint": "^11.0.0-beta.2",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
+    "colors": "^1.4.0",
+    "cross-env": "^7.0.2",
+    "cssnano": "^4.1.10",
+    "del": "^5.1.0",
+    "eslint": "^7.0.0-rc.0",
+    "eslint-plugin-import": "^2.20.2",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-changed": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-less": "^4.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-stylelint": "^13.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "miniprogram-ci": "^1.0.29",
+    "node-notifier": "^7.0.0",
+    "postcss-px2units": "^0.2.0",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "through2": "^3.0.1",
+    "webpack": "^4.43.0"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.9.6",
+    "big.js": "^5.2.2",
+    "dayjs": "^1.8.26",
+    "flyio": "^0.6.14",
+    "lodash": "^4.17.15",
+    "mobx": "^4.15.4"
+  }
+}

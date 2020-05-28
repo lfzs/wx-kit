@@ -1,0 +1,7 @@
+<image
+  src="{{ slimUrl }}"
+  show-menu-by-longpress
+  mode="widthFix"
+  class="custom-class"
+/>
+<image style="width: 0; height: 0; display: none;" src="{{ url }}" bindload="onImgLoad" />

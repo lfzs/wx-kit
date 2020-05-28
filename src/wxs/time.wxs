@@ -1,0 +1,33 @@
+function leadingZero(str) {
+  str = str.toString()
+  return str[1] ? str : '0' + str
+}
+
+// 将日期格式化
+function formatDate(date, unit) {
+  date = getDate(date)
+  unit = unit || 'YYYY-MM-DD HH:mm:ss'
+  var YYYY = date.getFullYear()
+  var MM = leadingZero(date.getMonth() + 1)
+  var DD = leadingZero(date.getDate())
+  var HH = leadingZero(date.getHours())
+  var mm = leadingZero(date.getMinutes())
+  var ss = leadingZero(date.getSeconds())
+  return unit.replace('YYYY', YYYY).replace('MM', MM).replace('DD', DD).replace('HH', HH).replace('mm', mm).replace('ss', ss)
+}
+
+// 将 秒 格式化
+function formatSecond(second, unit) {
+  second = second || 0
+  unit = unit || 'DD:HH:mm:ss'
+  var DD = leadingZero(Math.floor(second / (24 * 3600)))
+  var HH = leadingZero(Math.floor(second / 3600 % 24))
+  var mm = leadingZero(Math.floor(second / 60 % 60))
+  var ss = leadingZero(Math.floor(second % 60))
+  return unit.replace('DD', DD).replace('HH', HH).replace('mm', mm).replace('ss', ss)
+}
+
+module.exports = {
+  formatDate: formatDate,
+  formatSecond: formatSecond,
+}

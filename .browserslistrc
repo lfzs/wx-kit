@@ -1,0 +1,4 @@
+# https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/env.html 小程序的运行环境
+# npx browserslist 检测该配置筛选了那些浏览器
+
+ios_saf >= 9
