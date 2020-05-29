@@ -42,6 +42,7 @@ function handleResponse(res) {
 }
 
 async function handleError(err) {
+  console.warn('fly', err) // eslint-disable-line no-console
   if (err.status === 401) {
     // 向后台换取 token 的接口是否需要用加密数据。保留一种即可。需要
     const canGetUserInfo = await token.canGetUserInfo()
