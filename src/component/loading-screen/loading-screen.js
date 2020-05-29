@@ -31,7 +31,7 @@ Component({
         await getCurrentPage()._init()
         this.setData({ status: -1 })
       } catch (e) {
-        console.log(e) // eslint-disable-line no-console
+        console.warn('loading-screen', e) // eslint-disable-line no-console
         const { status, error_message, message, errMsg } = e
 
         let errorText = ''
