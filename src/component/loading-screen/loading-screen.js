@@ -6,7 +6,7 @@ Component({
 
   data: {
     loading: true,
-    status: -1,
+    statusCode: -1,
     errorText: '',
   },
 
@@ -18,7 +18,7 @@ Component({
 
   pageLifetimes: {
     show() {
-      this.data.status === 401 && token.getToken() && this.init() // 其他页面授过权,更新当前页面
+      this.data.statusCode === 401 && token.getToken() && this.init() // 其他页面授过权,更新当前页面
     },
   },
 
@@ -29,14 +29,14 @@ Component({
 
       try {
         await getCurrentPage()._init()
-        this.setData({ status: -1 })
+        this.setData({ statusCode: -1 })
       } catch (e) {
         console.warn('loading-screen', e) // eslint-disable-line no-console
-        const { status, error_message, message, errMsg } = e
+        const { statusCode, error_message, message, errMsg } = e
 
         let errorText = ''
-        status === 404 && (errorText = error_message || message || errMsg || '请求失败, 请稍后重试')
-        this.setData({ status, errorText })
+        statusCode === 404 && (errorText = error_message || message || errMsg || '请求失败, 请稍后重试')
+        this.setData({ statusCode, errorText })
       }
 
       this.setData({ loading: false })

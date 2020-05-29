@@ -1,12 +1,12 @@
 import { observable, flow } from 'mobx'
-import { fetchAction, fly } from '@util'
+import { fetchAction, request } from '@util'
 
 export default new class {
   @observable data = {}
 
   @fetchAction
   fetchData() {
-    return fly.get('user')
+    return request.get('user')
   }
 
   updateUserInfo = flow(function* (userInfo = {}) {
@@ -16,7 +16,7 @@ export default new class {
       delete userInfo.nickName
       delete userInfo.avatarUrl
     }
-    const { data } = yield fly.put('user', userInfo)
+    const { data } = yield request.put('user', userInfo)
     this.data = data
   })
 }
