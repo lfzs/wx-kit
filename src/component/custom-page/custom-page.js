@@ -1,5 +1,5 @@
 // 自定义页面
-import { nav, fly, toast } from '@util'
+import { nav, request, toast } from '@util'
 
 Component({
 
@@ -39,7 +39,7 @@ Component({
 
     async getItemsById(cpl) {
       // 根据列表 id 获取对应的商品
-      const items = cpl.map(item => fly.get(`custom_list/${item.data.data[0].id}`).catch(() => ({ data: {} })))
+      const items = cpl.map(item => request.get(`custom_list/${item.data.data[0].id}`).catch(() => ({ data: {} })))
       const data = await Promise.all(items)
 
       const itemsList = {}

@@ -1,8 +1,8 @@
 <template wx:if="{{ loading }}" is="loading" />
 <block wx:else>
-  <slot wx:if="{{ status === -1 }}" />
-  <template wx:elif="{{ status === 401 }}" is="login" />
-  <template wx:elif="{{ status === 404 }}" is="error" data="{{ errorText }}" />
+  <slot wx:if="{{ statusCode === -1 }}" />
+  <template wx:elif="{{ statusCode === 401 }}" is="login" />
+  <template wx:elif="{{ statusCode === 404 }}" is="error" data="{{ errorText }}" />
   <template wx:else is="retry" />
 </block>
 

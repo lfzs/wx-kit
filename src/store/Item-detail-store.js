@@ -1,5 +1,5 @@
 import { observable } from 'mobx'
-import { fetchAction, fly } from '@util'
+import { fetchAction, request } from '@util'
 import { Cache } from '@store'
 
 export default class extends Cache {
@@ -7,6 +7,6 @@ export default class extends Cache {
 
   @fetchAction
   fetchData() {
-    return fly.get(`items/${this.id}`)
+    return request.get(`items/${this.id}`)
   }
 }

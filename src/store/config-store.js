@@ -1,5 +1,5 @@
 import { observable, flow, action } from 'mobx'
-import { fetchAction, fly, wxp } from '@util'
+import { fetchAction, request, wxp } from '@util'
 
 export default new class {
   @observable data = {}
@@ -7,11 +7,11 @@ export default new class {
 
   @fetchAction
   fetchData() {
-    return fly.get('site_configs')
+    return request.get('site_configs')
   }
 
   setQiniuMeta = flow(function* () {
-    const { data } = yield fly.get('qiniu_meta')
+    const { data } = yield request.get('qiniu_meta')
     this.qiniuMeta = data
     setTimeout(() => this.clearQiniuMeta(), data.expires_in * 1000)
   })

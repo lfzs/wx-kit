@@ -1,5 +1,5 @@
 import { computed, observable, flow } from 'mobx'
-import { fly } from '@util'
+import { request } from '@util'
 
 export default class {
   @observable data = []
@@ -12,7 +12,7 @@ export default class {
   fetchData = flow(function* () {
     this.state = 'pending'
     try {
-      const { data, meta } = yield fly.get(this.api, { offset: 0, per_page: this.meta.per_page, ...this.param })
+      const { data, meta } = yield request.get(this.api, { offset: 0, per_page: this.meta.per_page, ...this.param })
       this.data = data
       this.meta = meta
       this.state = 'done'
@@ -32,7 +32,7 @@ export default class {
 
     this.state = 'pending'
     try {
-      const { data, meta } = yield fly.get(this.api, { offset: this.data.length, per_page: this.meta.per_page, ...this.param })
+      const { data, meta } = yield request.get(this.api, { offset: this.data.length, per_page: this.meta.per_page, ...this.param })
       this.data.push(...data)
       this.meta = meta
       this.state = 'done'
