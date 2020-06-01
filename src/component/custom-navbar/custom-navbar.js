@@ -3,6 +3,10 @@ import { goBack, isTabPage, APP_NAME, ui } from '@util'
 
 Component({
 
+  options: {
+    multipleSlots: true,
+  },
+
   properties: {
     statusBar: { type: Boolean, value: true },
     nav: { type: Boolean, value: true },

@@ -6,8 +6,8 @@
     "start": "cross-env NODE_ENV=development gulp dev",
     "staging": "cross-env NODE_ENV=staging gulp build",
     "build": "cross-env NODE_ENV=production gulp build",
-    "deploy:staging": "cross-env NODE_ENV=staging node script/miniprogram-ci.js",
-    "deploy:production": "cross-env NODE_ENV=production node script/miniprogram-ci.js"
+    "deploy:staging": "node script/miniprogram-ci.js staging",
+    "deploy:production": "node script/miniprogram-ci.js production"
   },
   "husky": {
     "hooks": {

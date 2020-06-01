@@ -2,9 +2,9 @@
 
 ## 使用
 
-- 补充 `project.config.json.example` 的 `projectname` 和 `appid`
-
 - `cp project.config.json.example project.config.json`
+
+- 补充 `project.config.json` 的 `projectname` 和 `appid`
 
 - `yarn install && yarn start`
 
