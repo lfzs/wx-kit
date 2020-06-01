@@ -6,7 +6,6 @@ Component({
   properties: {
     show: Boolean,
     img: String,
-    url: String,
     saveBtn: Boolean,
     closeBtn: Boolean,
   },

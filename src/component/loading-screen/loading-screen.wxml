@@ -1,9 +1,10 @@
 <template wx:if="{{ loading }}" is="loading" />
 <block wx:else>
-  <slot wx:if="{{ statusCode === -1 }}" />
-  <template wx:elif="{{ statusCode === 401 }}" is="login" />
+  <view class="{{  statusCode === -1 ? 'content-visible' : 'content-hidden' }}"><slot /></view> <!-- wx:if slot 不会挂载 DOM，但会触发 slot 内组件生命周期(如果获取 DOM 信息,将会出错)。此种形式会保持元素一直挂载在 DOM 中 -->
+
+  <template wx:if="{{ statusCode === 401 }}" is="login" />
   <template wx:elif="{{ statusCode === 404 }}" is="error" data="{{ errorText }}" />
-  <template wx:else is="retry" />
+  <template wx:elif="{{ statusCode !== -1 && statusCode !== 401 && statusCode !== 404 }}" is="retry" />
 </block>
 
 <template name="loading">

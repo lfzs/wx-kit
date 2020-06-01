@@ -1,5 +1,5 @@
 import { mineStore } from '@store'
-import { TOKEN_KEY, wxp, baseURL } from '@util'
+import { TOKEN_KEY, wxp, request } from '@util'
 
 export default new class {
 
@@ -29,7 +29,7 @@ export default new class {
   // code 为调用 wx.getUserInfo 前获取的。 userInfo 格式为 wx.getUserInfo 获取的值
   async login(code = '', userInfo = {}) {
     const body = { code, encrypted_data: userInfo.encryptedData, iv: userInfo.iv }
-    const data = await wxp.request({ method: 'POST', url: `${baseURL}/user/token`, data: body })
+    const data = await request.post('user/token', body)
 
     const { data: { access_token }, statusCode } = data
     if (!access_token) throw { ...data.data, status: statusCode } // 没有返回 access_token 就按照失败处理
