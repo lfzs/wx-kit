@@ -10,7 +10,8 @@
     "enhance": false,
     "nodeModules": false,
 		"showShadowRootInWxmlPanel": false,
-    "minified": false
+    "minified": false,
+    "useCompilerModule": false
   },
   "miniprogramRoot": "./dist/",
   "compileType": "miniprogram",

@@ -9,8 +9,9 @@ execSync(isProduction ? 'yarn build' : 'yarn staging')
 const ci = require('miniprogram-ci')
 const dayjs = require('dayjs')
 
-const config = fs.readFileSync('project.config.json')
+const config = fs.readFileSync('project.config.json.example')
 const { appid } = JSON.parse(config.toString())
+fs.writeFileSync('project.config.json', config)
 
 const project = new ci.Project({
   appid,

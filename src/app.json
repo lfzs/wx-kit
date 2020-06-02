@@ -1,22 +1,22 @@
 {
   "pages": [
-    "page/home/home",
-    "page/mine/mine",
-    "page/webview/webview"
+    "page/main/home/home",
+    "page/main/mine/mine",
+    "page/main/webview/webview"
   ],
   "subpackages": [
     {
-      "root": "page-order",
+      "root": "page/order",
       "pages": [
         "list/list"
       ]
     }
   ],
   "preloadRule": {
-    "page/mine/mine": { "network": "all", "packages": ["page-order"] }
+    "page/main/mine/mine": { "network": "all", "packages": ["page/order"] }
   },
   "window": {
-    "navigationBarTitleText": "mini-app",
+    "navigationBarTitleText": "wx-kit",
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#000",
     "navigationStyle": "default",
@@ -39,10 +39,10 @@
     "custom": false,
     "list": [
       {
-        "pagePath": "page/home/home",
+        "pagePath": "page/main/home/home",
         "text": "首页"
       },{
-        "pagePath": "page/mine/mine",
+        "pagePath": "page/main/mine/mine",
         "text": "我的"
       }
     ]

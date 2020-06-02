@@ -1,0 +1,26 @@
+stages:
+  - build
+
+before_script:
+  - nvm install 13
+  - nvm use 13
+
+deploy_staging:
+  stage: build
+  script:
+    - yarn deploy:staging
+  retry: 1
+  only:
+    - develop
+
+deploy_production:
+  stage: build
+  script:
+    - yarn deploy:production
+  retry: 1
+  only:
+    - master
+
+cache:
+  paths:
+    - node_modules/

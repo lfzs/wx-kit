@@ -1,4 +1,4 @@
-export const APP_NAME = 'mini-app'
+export const APP_NAME = 'wx-kit'
 export const TOKEN_KEY = `token_${process.env.NODE_ENV}`
 export const LANGUAGE = `language_${process.env.NODE_ENV}`
 export const ADD_TO_MY_MINIPROGRAM = `add_to_my_miniprogram_${process.env.NODE_ENV}`
