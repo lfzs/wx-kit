@@ -1,0 +1,26 @@
+<wxs module="V">
+  module.exports = function(item, items) {
+    for (var index = 0; index < items.length; index++) {
+      if (item.id === items[index].id) return true
+    }
+  }
+</wxs>
+
+<mask show="{{ show }}" position="bottom" bindmask="onClose">
+  <view class="item-sku">
+    <stepper max="{{ item.buy_quota ? (item.buy_quota > sku.quantity ? sku.quantity : item.buy_quota) : (sku.quantity || 1) }}" value="{{ quantity }}" bindchange="onStepper" />
+
+    <block wx:for="{{ item.sku_options }}" wx:key="id">
+      <view class="name">{{ item.text }}</view>
+      <text
+        class="item {{ V(value, items) && 'active' }}"
+        wx:for="{{ item.sku_values }}"
+        wx:key="id"
+        wx:for-item="value"
+        bindtap="onItem"
+        data-item="{{ value }}"
+      >{{ value.text }}</text>
+    </block>
+
+  </view>
+</mask>

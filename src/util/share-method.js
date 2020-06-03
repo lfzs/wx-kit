@@ -3,7 +3,7 @@ import { nav } from '@util'
 import _ from 'lodash'
 
 export default {
-  noop: _.noop(),
+  noop: _.noop,
 
   viewImg(e) {
     const { url, urls } = e.target.dataset

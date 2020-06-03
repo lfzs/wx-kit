@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mask": "/component/mask/mask",
+    "stepper": "/component/stepper/stepper"
+  }
+}
