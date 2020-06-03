@@ -10,7 +10,6 @@ Component({
   },
 
   methods: {
-    noop() {},
     onMask() { this.triggerEvent('mask') },
   },
 

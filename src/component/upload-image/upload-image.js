@@ -46,10 +46,5 @@ Component({
       images.splice(index, 1)
       this.triggerEvent('upload', images)
     },
-
-    previewImage(e) {
-      const { url } = e.currentTarget.dataset
-      wx.previewImage({ urls: [url] })
-    },
   },
 })

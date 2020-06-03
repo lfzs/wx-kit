@@ -28,7 +28,6 @@ Component({
 
   methods: {
     goBack() { this.data.isTabPage || goBack() },
-    noop() {},
 
     init() {
       this.setData({

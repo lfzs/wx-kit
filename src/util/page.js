@@ -1,5 +1,5 @@
 import { autorun, toJS, configure } from 'mobx'
-import { homePage, nav } from '@util'
+import { homePage, shareMethod } from '@util'
 
 configure({ enforceActions: 'always' })
 
@@ -36,22 +36,8 @@ Page = (config = {}) => {
     },
   }
 
-  const utils = {
-    noop() { /** 阻止滚动穿透 */ },
-
-    previewImage(e) {
-      const { url, urls } = e.target.dataset
-      wx.previewImage({ current: url, urls: urls ? urls : [url] })
-    },
-
-    nav(e) {
-      const { url } = e.currentTarget.dataset
-      nav(url)
-    },
-  }
-
   delete config.store
-  return oldPage(Object.assign({}, utils, config, interceptors))
+  return oldPage(Object.assign({}, shareMethod, config, interceptors))
 }
 
 function getProperties(store) {
