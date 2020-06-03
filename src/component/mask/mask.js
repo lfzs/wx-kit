@@ -1,10 +1,12 @@
 // 遮罩
 
 Component({
-  externalClasses: ['custom-class'],
-
   properties: {
     show: Boolean,
+    position: {
+      type: String,
+      value: 'center', // center top right bottom left
+    },
   },
 
   methods: {

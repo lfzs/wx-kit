@@ -1,7 +1,10 @@
 // 步进器
 Component({
   properties: {
-    value: Number,
+    value: {
+      type: Number,
+      value: 1,
+    },
     max: {
       type: Number,
       value: Infinity,
@@ -13,6 +16,18 @@ Component({
     step: {
       type: Number,
       value: 1,
+    },
+  },
+
+  observers: {
+    'max, min': function(max, min) {
+      if (this.data.value > max) {
+        this.setData({ value: max })
+        this.triggerEvent('change', max)
+      } else if (this.data.value < min) {
+        this.setData({ value: min })
+        this.triggerEvent('change', min)
+      }
     },
   },
 

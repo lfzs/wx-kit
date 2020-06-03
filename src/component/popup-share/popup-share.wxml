@@ -1,6 +1,6 @@
-<mask show="{{ show }}" bindmask="onClose" custom-class="mask">
+<mask show="{{ show }}" position="bottom" bindmask="onClose">
 
-  <view class="items {{ show && 'active' }}">
+  <view class="items">
     <view class="title">分享方式</view>
 
     <view class="content">
