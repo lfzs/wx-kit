@@ -11,15 +11,15 @@ export const MEMORY_WARNING_LEVEL = {
 
 export const LOCAL = { // 参照 i18n.wxs, 提供给 js 文件使用
   zh: {
-    'tab./page/home/home': '首页',
-    '/page/home/home': '首页',
+    'tab./page/main/home/home': '首页',
+    '/page/main/home/home': '首页',
     '首页': '首页',
     '我的': '我的',
   },
 
   en: {
-    'tab./page/home/home': 'index',
-    '/page/home/home': 'home',
+    'tab./page/main/home/home': 'index',
+    '/page/main/home/home': 'home',
     '首页': 'Home',
     '我的': 'Mine',
   },

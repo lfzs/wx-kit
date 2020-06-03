@@ -1,6 +1,6 @@
 export const tabPages = [
-  '/page/home/home',
-  '/page/mine/mine',
+  '/page/main/home/home',
+  '/page/main/mine/mine',
 ]
 
 export const homePage = tabPages[0]

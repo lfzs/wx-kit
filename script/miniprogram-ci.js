@@ -1,7 +1,7 @@
 const { execSync } = require('child_process')
 const fs = require('fs')
 
-const isProduction = process.argv[2] === 'production'
+const isProduction = process.env.NODE_ENV === 'production'
 
 execSync('yarn install')
 execSync(isProduction ? 'yarn build' : 'yarn staging')
@@ -11,7 +11,7 @@ const dayjs = require('dayjs')
 
 const config = fs.readFileSync('project.config.json.example')
 const { appid } = JSON.parse(config.toString())
-fs.writeFileSync('project.config.json', config)
+fs.existsSync('project.config.json') || fs.writeFileSync('project.config.json', config)
 
 const project = new ci.Project({
   appid,
