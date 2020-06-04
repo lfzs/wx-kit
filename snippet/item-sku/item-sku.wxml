@@ -22,5 +22,7 @@
       >{{ value.text }}</text>
     </block>
 
+    <button disabled="{{ !sku.id || !sku.on_sale }}">{{ sku.id ? (sku.on_sale ? '购买' : '商品已下架') : '请选择商品属性' }}</button>
+
   </view>
 </mask>
