@@ -1,1 +1,1 @@
-<button open-type="getUserInfo" bindgetuserinfo="handleAuth" class="auth-button custom-class">{{ text }}</button>
+<button open-type="getUserInfo" bindgetuserinfo="onAuth" style="{{ customStyle }}">{{ text }}</button>

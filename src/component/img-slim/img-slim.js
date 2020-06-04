@@ -1,9 +1,9 @@
 // 图片瘦身
 Component({
-  externalClasses: ['custom-class'],
 
   properties: {
     url: String, // 原图
+    customStyle: String,
   },
 
   data: {

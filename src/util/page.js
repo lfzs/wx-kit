@@ -12,7 +12,7 @@ Page = (config = {}) => {
 
     onLoad(query) {
       this._disposers = []
-      this.store = (typeof store === 'function') ? store.call(this, query) : (store || {})
+      this.store = ((typeof store === 'function') ? store.call(this, query) : store) || {}
       Object.entries(this.store).forEach(([key, value]) => {
         const disposer = autorun(() => this.setData({ [key]: getProperties(value) }), { name: key })
         this._disposers.push(disposer)
