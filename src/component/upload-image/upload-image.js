@@ -3,8 +3,6 @@ import { configStore } from '@store'
 
 // 上传图片
 Component({
-  externalClasses: ['custom-class'],
-
   properties: {
     limit: {
       type: Number,

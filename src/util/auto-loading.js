@@ -1,6 +1,6 @@
 import { wxp } from '@util'
 
-const ignoreErrors = []
+const ignoreErrors = [].join('')
 
 async function loading(promise, title = '加载中', successText, failText) {
   try {
@@ -13,7 +13,7 @@ async function loading(promise, title = '加载中', successText, failText) {
     wx.hideLoading()
     const errText = err.message || err.errMsg || err.error_message || '请求失败, 请重试'
     if (!ignoreErrors.includes(errText)) {
-      wx.showModal({
+      await wxp.showModal({
         title: '提示',
         content: failText || errText,
         showCancel: false,

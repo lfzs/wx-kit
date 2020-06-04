@@ -2,17 +2,18 @@
 import { mineStore } from '@store'
 
 Component({
-  externalClasses: ['custom-class'],
 
   properties: {
     text: {
       type: String,
       value: '提交',
     },
+
+    customStyle: String,
   },
 
   methods: {
-    handleAuth(e) {
+    onAuth(e) {
       const { userInfo } = e.detail
       if (!userInfo) return
       this.triggerEvent('submit')
