@@ -12,6 +12,6 @@ export default {
 
   nav(e) {
     const { url } = e.currentTarget.dataset
-    nav(url)
+    url && nav(url)
   },
 }
