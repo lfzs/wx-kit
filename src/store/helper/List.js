@@ -1,4 +1,4 @@
-import { computed, observable, flow } from 'mobx'
+import { computed, observable, flow, action } from 'mobx'
 import { request } from '@util'
 
 export default class {
@@ -50,6 +50,7 @@ export default class {
     return this.data.findIndex(item => +item.id === +id)
   }
 
+  @action
   removeItemById(id) {
     const index = this.findIndexById(id)
     if (index > -1) {
@@ -58,11 +59,13 @@ export default class {
     }
   }
 
+  @action
   replaceItem(newItem) {
     const index = this.data.findIndex(item => +item.id === +newItem.id)
     if (index > -1) this.data.splice(index, 1, newItem)
   }
 
+  @action
   unshift(item) {
     this.data.unshift(item)
     this.meta.total += 1

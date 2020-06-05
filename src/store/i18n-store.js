@@ -45,13 +45,3 @@ export default new class {
     return LOCAL[this.language][value] || ''
   }
 }
-
-// page.util 中定义
-// _updateTitle() { // onShow 执行
-//  i18nStore.setTabbar()
-//  18nStore.setCurrentTitle()
-// }
-
-// t(value) {
-//   return i18nStore.t(value)
-// }

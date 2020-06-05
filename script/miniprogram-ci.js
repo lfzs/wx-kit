@@ -26,4 +26,4 @@ ci.upload({
   desc: isProduction ? 'production' : 'staging',
   robot: isProduction ? 1 : 2,
   onProgressUpdate: console.log, // eslint-disable-line no-console
-})
+}).catch(() => process.exit(1))
