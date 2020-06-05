@@ -35,7 +35,7 @@ export default new class {
     if (!access_token) throw { ...data.data, status: statusCode } // 没有返回 access_token 就按照失败处理
 
     this._saveToken(access_token)
-    mineStore.updateUserInfo(userInfo.userInfo)
+    userInfo.userInfo && mineStore.updateUserInfo(userInfo.userInfo)
   }
 
 }
