@@ -1,4 +1,4 @@
-import { shareMethod } from '@util'
+import shareMethod from './share-method'
 
 const oldComponent = Component
 

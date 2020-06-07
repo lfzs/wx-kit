@@ -1,5 +1,5 @@
-import './util/page'
-import './util/component'
+import './util/helper/page'
+import './util/helper/component'
 import { MEMORY_WARNING_LEVEL } from '@util'
 
 App({
