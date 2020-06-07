@@ -1,8 +1,8 @@
-import { request, wxp } from '@util'
+import { request, wxp, toast } from '@util'
 
 export default async function({ content = '', tmplIds = [], targetType = '', targetId = '' }) {
   tmplIds = tmplIds.filter(Boolean)
-  if (!tmplIds.length) return wxp.showToast({ title: content, icon: 'none' })
+  if (!tmplIds.length) return toast(content)
   wx.hideLoading()
 
   const sendSubscribeMessage = (res = {}) => {
@@ -11,12 +11,12 @@ export default async function({ content = '', tmplIds = [], targetType = '', tar
   }
 
   const { subscriptionsSetting: { mainSwitch, itemSettings = {} } } = await wxp.getSetting({ withSubscriptions: true })
-  if (!mainSwitch) return wxp.showToast({ title: content, icon: 'none' })
+  if (!mainSwitch) return toast(content)
 
   const onceIds = tmplIds.filter(id => !itemSettings[id]) // 订阅一次的 id
   if (!onceIds.length) {
     wx.requestSubscribeMessage({ tmplIds, success: res => sendSubscribeMessage(res) })
-    return wxp.showToast({ title: content, icon: 'none' })
+    return toast(content)
   }
 
   return new Promise(resolve => {

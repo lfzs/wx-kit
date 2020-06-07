@@ -27,7 +27,7 @@ async function handleResponse(res, options) {
   }
 
   if (statusCode >= 400 && statusCode < 600) throw { ...data, statusCode } // 错误
-  if (options.method === 'GET' && header['x-page']) res.meta = { per_page: +header['x-per-page'][0], total: +header['x-total'][0] }
+  if (options.method === 'GET' && header['X-Page']) res.meta = { per_page: +header['X-Per-Page'], total: +header['X-Total'] }
   return res
 }
 
