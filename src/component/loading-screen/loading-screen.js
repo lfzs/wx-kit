@@ -1,5 +1,5 @@
 // 拦截页面的 onLoad
-import { goHome, autoLoading, wxp, getCurrentPage, token } from '@util'
+import { goHome, autoLoading, wxp, getCurrentPage, token, getErrorMessage } from '@util'
 
 Component({
   properties: {},
@@ -7,7 +7,7 @@ Component({
   data: {
     loading: true,
     statusCode: -1,
-    errorText: '',
+    errorMessage: '',
   },
 
   lifetimes: {
@@ -32,11 +32,10 @@ Component({
         this.setData({ statusCode: -1 })
       } catch (e) {
         console.warn('loading-screen', e) // eslint-disable-line no-console
-        const { statusCode, error_message, message, errMsg } = e
-
-        let errorText = ''
-        statusCode === 404 && (errorText = error_message || message || errMsg || '请求失败, 请稍后重试')
-        this.setData({ statusCode, errorText })
+        this.setData({
+          statusCode: e.statusCode || 0, // 0 意味 retry
+          errorMessage: getErrorMessage(e),
+        })
       }
 
       this.setData({ loading: false })

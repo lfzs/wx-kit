@@ -1,19 +1,8 @@
-<template wx:if="{{ loading }}" is="loading" />
-<block wx:else>
-  <view class="{{  statusCode === -1 ? 'content-visible' : 'content-hidden' }}"><slot /></view> <!-- wx:if slot 不会挂载 DOM，但会触发 slot 内组件生命周期(如果获取 DOM 信息,将会出错)。此种形式会保持元素一直挂载在 DOM 中 -->
+<template wx:if="{{ statusCode === 401 }}" is="login" />
+<template wx:elif="{{ statusCode === 404 }}" is="error" data="{{ errorText }}" />
+<template wx:elif="{{ statusCode !== -1 }}" is="retry" />
 
-  <template wx:if="{{ statusCode === 401 }}" is="login" />
-  <template wx:elif="{{ statusCode === 404 }}" is="error" data="{{ errorText }}" />
-  <template wx:elif="{{ statusCode !== -1 && statusCode !== 401 && statusCode !== 404 }}" is="retry" />
-</block>
-
-<template name="loading">
-  <scroll-view class="loading-screen">
-    <view class="loading">
-      <image src="/image/icon-loading.gif" class="icon-loading" mode="widthFix" />
-    </view>
-  </scroll-view>
-</template>
+<view class="{{ statusCode === -1 ? 'content-visible' : 'content-hidden' }}"><slot /></view> <!-- wx:if slot 不会挂载 DOM，但会触发 slot 内组件生命周期(如果获取 DOM 信息,将会出错)。此种形式会保持元素一直挂载在 DOM 中 -->
 
 <template name="login">
   <scroll-view class="loading-screen">
@@ -28,7 +17,7 @@
   <scroll-view class="loading-screen">
     <view class="error">
       <image class="icon-404" src="/image/icon-404.png" mode="widthFix" />
-      <text>{{ errorText }}</text>
+      <text>{{ errorMessage }}</text>
     </view>
   </scroll-view>
 </template>

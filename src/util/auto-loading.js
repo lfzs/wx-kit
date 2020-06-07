@@ -1,26 +1,19 @@
-import { wxp } from '@util'
+import { wxp, toast, getErrorMessage } from '@util'
 
 const ignoreErrors = [].join('')
 
 async function loading(promise, title = '加载中', successText, failText) {
   try {
-    await wxp.showLoading({ title, mask: true })
+    wx.showLoading({ title, mask: true })
     const res = await promise
     wx.hideLoading()
-    if (successText) await wxp.showToast({ title: successText, icon: 'success' })
+    if (successText) await toast(successText, 'success', 3000)
     return res
-  } catch (err) {
+  } catch (e) {
     wx.hideLoading()
-    const errText = err.message || err.errMsg || err.error_message || '请求失败, 请重试'
-    if (!ignoreErrors.includes(errText)) {
-      await wxp.showModal({
-        title: '提示',
-        content: failText || errText,
-        showCancel: false,
-        confirmText: '知道了',
-      })
-    }
-    throw err
+    const errorMessage = getErrorMessage(e)
+    if (!ignoreErrors.includes(errorMessage)) await wxp.showModal({ title: '提示', content: failText || errorMessage, showCancel: false, confirmText: '知道了' })
+    throw e
   }
 }
 

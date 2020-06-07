@@ -6,7 +6,7 @@ Component({
 
     reachBottomText: {
       type: String,
-      value: '到底了',
+      value: '已经到底了',
     },
   },
 })
