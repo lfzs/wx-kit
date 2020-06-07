@@ -1,5 +1,6 @@
 import { autorun, toJS, configure } from 'mobx'
-import { homePage, shareMethod } from '@util'
+import { homePage } from '@util'
+import shareMethod from './share-method'
 
 configure({ enforceActions: 'always' })
 

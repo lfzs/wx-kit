@@ -48,6 +48,7 @@
     ]
   },
   "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
     "loading-screen": "/component/loading-screen/loading-screen",
     "custom-page": "/component/custom-page/custom-page",

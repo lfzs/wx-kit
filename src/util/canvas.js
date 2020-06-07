@@ -4,7 +4,7 @@
 */
 
 let CTX
-export default function canvas(canvasId, config = []) {
+export default function(canvasId, config = []) {
   CTX = wx.createCanvasContext(canvasId)
 
   config.forEach(item => {
