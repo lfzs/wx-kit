@@ -39,7 +39,7 @@ Page({
   },
 
   onLoadMore() {
-    return this.getStore().tryFetchMoreData()
+    return this.getStore().fetchMoreData()
   },
 
 })

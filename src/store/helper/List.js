@@ -66,9 +66,14 @@ export default class {
   }
 
   @action
-  unshift(item) {
-    this.data.unshift(item)
-    this.meta.total += 1
+  unshiftItem(newItem) {
+    const index = this.data.findIndex(item => +item.id === +newItem.id)
+    if (index > -1) {
+      this.data.splice(index, 1, newItem)
+    } else {
+      this.data.unshift(newItem)
+      this.meta.total += 1
+    }
   }
 
   @computed

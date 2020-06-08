@@ -1,3 +1,2 @@
-<loading-screen>
-  <custom-page components="{{ homeStore.data.components }}" />
-</loading-screen>
+<error-page status="{{ onLoad }}" />
+<custom-page components="{{ homeStore.data.components }}" />

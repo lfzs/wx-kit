@@ -13,7 +13,6 @@
 ## util/page.js
 
 - 对小程序的 Page 进行一层拦截，注入 mobx 的 autorun
-- 将 onLoad 挂载到页面上，使用组件 loading-screen 调用
 - 然后在 app.js 中引入，这样所有的页面使用的 Page 就是这个被修饰过的
 
 ## util/fetch-action.js
