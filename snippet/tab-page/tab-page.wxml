@@ -1,37 +1,36 @@
+<error-page status="{{ onLoad }}" />
+
+<view class="nav">
+  <view
+    class="flex-center"
+    wx:for="{{ page }}"
+    wx:key="name"
+    style="width: {{ 100 / page.length * 100 }}%"
+    bindtap="onNav"
+    data-current="{{ index }}"
+  >{{ item.text }}</view>
+
+  <view class="line" style="left: {{ 100 / page.length / 2 * (2 * current + 1) }}%" />
+</view>
+
+<swiper class="swiper" current="{{ current }}" bindchange="onSwiperChange" >
+  <swiper-item wx:for="{{ [allOrderListStore, waitPayOrderListStore, waitSendOrderListStore, waitConfirmOrderListStore] }}" wx:key="*this">
+    <scroll-view
+      class="scroll-view"
+      scroll-y
+      lower-threshold="{{ 100 }}"
+      enable-back-to-top
+      enable-flex
+      bindscrolltolower="onLoadMore"
+    >
+      <template is="item" wx:for="{{ item.data }}" wx:key="id" wx:for-item="value" data="{{ ...value }}" />
+      <loading-more listStatus="{{ item.listStatus }}" emptyText="暂无数据" />
+
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
 <template name="item">
   <view>{{ title }}</view>
 </template>
 
-<loading-screen>
-
-  <view class="nav">
-    <view
-      class="flex-center"
-      wx:for="{{ page }}"
-      wx:key="name"
-      style="width: {{ 100 / page.length * 100 }}%"
-      bindtap="onNav"
-      data-current="{{ index }}"
-    >{{ item.text }}</view>
-
-    <view class="line" style="left: {{ 100 / page.length / 2 * (2 * current + 1) }}%" />
-  </view>
-
-  <swiper class="swiper" current="{{ current }}" bindchange="onSwiperChange" >
-    <swiper-item wx:for="{{ [allOrderListStore, waitPayOrderListStore, waitSendOrderListStore, waitConfirmOrderListStore] }}" wx:key="*this">
-      <scroll-view
-        class="scroll-view"
-        scroll-y
-        lower-threshold="{{ 100 }}"
-        enable-back-to-top
-        enable-flex
-        bindscrolltolower="onLoadMore"
-      >
-        <template is="item" wx:for="{{ item.data }}" wx:key="id" wx:for-item="value" data="{{ ...value }}" />
-        <loading-more listStatus="{{ item.listStatus }}" emptyText="暂无数据" />
-
-      </scroll-view>
-    </swiper-item>
-  </swiper>
-
-</loading-screen>

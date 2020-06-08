@@ -1,3 +1,2 @@
-<loading-screen>
+<error-page status="{{ onLoad }}" />
 mine
-</loading-screen>

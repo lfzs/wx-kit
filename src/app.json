@@ -50,7 +50,7 @@
   "style": "v2",
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
-    "loading-screen": "/component/loading-screen/loading-screen",
+    "error-page": "/component/error-page/error-page",
     "custom-page": "/component/custom-page/custom-page",
     "item-card": "/component/item-card/item-card",
     "img-icon": "/component/img-icon/img-icon",

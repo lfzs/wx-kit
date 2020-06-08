@@ -1,0 +1,32 @@
+<block wx:if="{{ status.statusCode && status.statusCode !== -1 }}">
+  <template wx:if="{{ status.statusCode === 401 }}" is="login" />
+  <template wx:elif="{{ status.statusCode === 404 }}" is="error" data="{{ errorText }}" />
+  <template wx:else is="retry" />
+</block>
+
+<template name="login">
+  <scroll-view class="error-page" catchtouchmove="noop">
+    <view class="login">
+      <image class="icon-logo" src="/image/icon-404.png" mode="widthFix" />
+      <button open-type="getUserInfo" bindgetuserinfo="onAuth" class="button">微信登陆</button>
+    </view>
+  </scroll-view>
+</template>
+
+<template name="error">
+  <scroll-view class="error-page" catchtouchmove="noop">
+    <view class="error">
+      <image class="icon-404" src="/image/icon-404.png" mode="widthFix" />
+      <text>{{ errorMessage }}</text>
+    </view>
+  </scroll-view>
+</template>
+
+<template name="retry">
+  <scroll-view class="error-page" catchtouchmove="noop">
+    <view class="retry" bindtap="init">
+      <image class="icon-disconnect" src="/image/icon-disconnect.png" mode="widthFix" />
+      <text>加载失败，点击屏幕重新加载</text>
+    </view>
+  </scroll-view>
+</template>

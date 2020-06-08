@@ -1,5 +1,5 @@
 import { autorun, toJS, configure } from 'mobx'
-import { homePage } from '@util'
+import { homePage, getErrorMessage, token } from '@util'
 import shareMethod from './share-method'
 
 configure({ enforceActions: 'always' })
@@ -7,7 +7,7 @@ configure({ enforceActions: 'always' })
 const oldPage = Page
 
 Page = (config = {}) => {
-  const { onLoad, onUnload, onShareAppMessage, store } = config
+  const { onLoad, onUnload, onShow, onShareAppMessage, store } = config
 
   const interceptors = {
 
@@ -19,13 +19,37 @@ Page = (config = {}) => {
         this._disposers.push(disposer)
       })
 
-      // 挂载到页面 以便 loading-screen 调用
-      this._init = () => onLoad && onLoad.call(this, query)
+      this._onLoad = async() => { // 拦截 config 里面的 onLoad
+        if (!onLoad) return
+        this.setData({ 'onLoad.loading': true })
+
+        try {
+          await onLoad.call(this, query)
+          this.setData({
+            'onLoad.statusCode': -1, // statusCode -1 代表成功
+            'onLoad.loading': false,
+          })
+        } catch (e) {
+          console.warn('onLoad', e) // eslint-disable-line no-console
+          this.setData({
+            'onLoad.statusCode': e.statusCode,
+            'onLoad.errorMessage': getErrorMessage(e),
+            'onLoad.loading': false,
+          })
+        }
+      }
+
+      this._onLoad()
     },
 
     onUnload() {
       this._disposers.forEach(disposer => disposer())
       onUnload && onUnload.call(this)
+    },
+
+    onShow() {
+      this.data.onLoad.statusCode === 401 && token.getToken() && this._onLoad() // 其他页面授过权,更新当前页面
+      onShow && onShow.call(this)
     },
 
     onShareAppMessage() {
