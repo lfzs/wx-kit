@@ -1,8 +1,8 @@
 import { wxp, toast, getErrorMessage } from '@util'
 
-const ignoreErrors = [].join('')
+const ignoreKeys = []
 
-async function loading(promise, title = '加载中', successText, failText) {
+async function loading(promise, title = '加载中', successText) {
   try {
     wx.showLoading({ title, mask: true })
     const res = await promise
@@ -12,7 +12,7 @@ async function loading(promise, title = '加载中', successText, failText) {
   } catch (e) {
     wx.hideLoading()
     const errorMessage = getErrorMessage(e)
-    if (!ignoreErrors.includes(errorMessage)) await wxp.showModal({ title: '提示', content: failText || errorMessage, showCancel: false, confirmText: '知道了' })
+    if (ignoreKeys.every(key => !errorMessage.includes(key))) await wxp.showModal({ title: '提示', content: errorMessage, showCancel: false, confirmText: '知道了' })
     throw e
   }
 }

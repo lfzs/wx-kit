@@ -32,7 +32,7 @@ Page = (config = {}) => {
         } catch (e) {
           console.warn('onLoad', e) // eslint-disable-line no-console
           this.setData({
-            'onLoad.statusCode': e.statusCode,
+            'onLoad.statusCode': e.statusCode || 404,
             'onLoad.errorMessage': getErrorMessage(e),
             'onLoad.loading': false,
           })
