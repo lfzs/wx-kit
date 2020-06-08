@@ -1,6 +1,6 @@
 <block wx:if="{{ status.statusCode && status.statusCode !== -1 }}">
   <template wx:if="{{ status.statusCode === 401 }}" is="login" />
-  <template wx:elif="{{ status.statusCode === 404 }}" is="error" data="{{ errorText }}" />
+  <template wx:elif="{{ status.statusCode === 404 }}" is="error" data="{{ ...status }}" />
   <template wx:else is="retry" />
 </block>
 
