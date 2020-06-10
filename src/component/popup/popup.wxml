@@ -1,7 +1,7 @@
-<mask show="{{ show }}" bindmask="onClose">
+<mask show="{{ show && img }}" bindmask="onClose">
 
   <view class="popup">
-    <image src="{{ img }}" mode="widthFix" class="img" bindtap="onImg" />
+    <image src="{{ img }}" mode="aspectFit" class="img" bindtap="onImg" />
     <text wx:if="{{ saveBtn }}" class="save-btn" bindtap="onSave">保存图片</text>
     <text wx:if="{{ closeBtn }}" class="close-btn" bindtap="onClose">关闭</text>
   </view>
