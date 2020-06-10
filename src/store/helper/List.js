@@ -79,14 +79,14 @@ export default class {
   @computed
   get listStatus() {
     return {
-      isNoMore: this.state === 'done' && this.data.length && this.data.length >= this.meta.total,
-      isLoading: this.state === 'pending' && !!this.data.length,
+      isNoMore: this.state === 'done' && this.data.length >= this.meta.total,
+      isLoading: this.state === 'pending',
       isEmpty: this.state !== 'pending' && !this.data.length,
     }
   }
 
   @computed
   get canLoadmore() {
-    return this.state === 'done' && this.data.length && this.data.length < this.meta.total
+    return this.state === 'done' && this.data.length < this.meta.total
   }
 }
