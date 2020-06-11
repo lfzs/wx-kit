@@ -1,11 +1,4 @@
-const { execSync } = require('child_process')
 const fs = require('fs')
-
-const isProduction = process.env.NODE_ENV === 'production'
-
-execSync('yarn install')
-execSync(isProduction ? 'yarn build' : 'yarn staging')
-
 const ci = require('miniprogram-ci')
 const dayjs = require('dayjs')
 
@@ -19,6 +12,8 @@ const project = new ci.Project({
   projectPath: '.',
   privateKeyPath: 'private.key',
 })
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 ci.upload({
   project,
