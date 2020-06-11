@@ -1,5 +1,10 @@
 import { wxp, baseURL, token } from '@util'
 
+function urlJoin(baseURL, url) {
+  url = url[0] === '/' ? url.slice(1) : url
+  return `${baseURL}/${url}`
+}
+
 async function request({ url = '', data = {}, method = 'GET', isNeedAuth = true }) { // isNeedAuth 用来全局配置是否需要带着 auth 访问接口
   const authorization = isNeedAuth ? await token.getToken() : ''
   const options = { url, data, method, header: { Authorization: authorization } }
@@ -31,7 +36,7 @@ async function handleResponse(res, options) {
   return res
 }
 
-request.get = (url, data, isNeedAuth) => request({ url: `${baseURL}/${url}`, data, isNeedAuth })
-request.post = (url, data, isNeedAuth) => request({ url: `${baseURL}/${url}`, data, isNeedAuth, method: 'POST' })
-request.put = (url, data, isNeedAuth) => request({ url: `${baseURL}/${url}`, data, isNeedAuth, method: 'PUT' })
+request.get = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth })
+request.post = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth, method: 'POST' })
+request.put = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth, method: 'PUT' })
 export default request
