@@ -6,9 +6,9 @@
 
 - `cp project.config.json.example project.config.json`
 
-- `yarn install && yarn start`
+- `yarn start`
 
-- 使用微信小程序开发者工具打开当前目录即可
+- 使用微信开发者工具打开当前目录即可
 
 ## util/page.js
 
@@ -17,7 +17,7 @@
 
 ## util/fetch-action.js
 
-- 用来装饰 store 的 fetchData 方法，监听请求是否完成，并添加 tryFetchData 方法
+- 用来装饰 store 的 fetchData 方法，监听请求是否完成，并添加 tryFetchData 方法 (store 需要提前声明 data)
 
 ## store/hepler/Cache.js
 

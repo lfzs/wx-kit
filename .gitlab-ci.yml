@@ -1,9 +1,15 @@
 stages:
+  - test
   - build
 
 before_script:
   - nvm install 13
   - nvm use 13
+
+lint:
+  stage: test
+  script:
+    - yarn lint
 
 deploy_staging:
   stage: build
