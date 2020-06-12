@@ -24,7 +24,7 @@ Component({
       wx.chooseImage({
         count: Math.min(count, 10),
         sizeType: ['compressed'],
-        success: async({ tempFiles }) => {
+        success: async ({ tempFiles }) => {
           const tempFilePaths = tempFiles.filter(file => file.size / 1024 / 1024 <= size).map(file => file.path)
           if (tempFilePaths.length < tempFiles.length) await toast(`图片大小不能超过 ${size}M `)
           tempFilePaths.length && this.upload(tempFilePaths)

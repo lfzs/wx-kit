@@ -64,7 +64,7 @@ module.exports = {
     'semi': [2, 'never', { 'beforeStatementContinuationChars': 'never' }],
     'semi-style': [2, 'last'],
     'space-before-blocks': 2,
-    'space-before-function-paren': [2, 'never'],
+    'space-before-function-paren': [2, { 'named': 'never', 'anonymous': 'never' }],
     'space-infix-ops': 2,
     'space-in-parens': 2,
     'switch-colon-spacing': 2,

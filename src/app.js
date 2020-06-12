@@ -1,6 +1,6 @@
 import './util/helper/page'
 import './util/helper/component'
-import { MEMORY_WARNING_LEVEL } from '@util'
+import { ui } from '@util'
 
 App({
 
@@ -14,9 +14,12 @@ App({
 
   reporter() {
     const LOGGER = wx.getRealtimeLogManager() // 实时日志管理器实例
-    wx.onPageNotFound(({ path, query, isEntryPage }) => LOGGER.warn(`onPageNotFound: path${path},query${query},isEntryPage${isEntryPage}`))
-    wx.onMemoryWarning(({ level }) => LOGGER.warn(`onMemoryWarning: level${MEMORY_WARNING_LEVEL[level]}`))
+    wx.onPageNotFound(({ path, query, isEntryPage }) => LOGGER.warn(`onPageNotFound: target:${path},query:${JSON.stringify(query)},isFirstEntry:${isEntryPage}`))
     wx.onError(error => LOGGER.error(`onError: ${error}`))
+    wx.onMemoryWarning(() => {
+      const { model, system } = ui.getSystemInfo()
+      LOGGER.warn(`onMemoryWarning: model:${model},system:${system}`)
+    })
   },
 
   // 新版本提示
