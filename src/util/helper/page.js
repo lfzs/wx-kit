@@ -19,7 +19,7 @@ Page = (config = {}) => {
         this._disposers.push(disposer)
       })
 
-      this._onLoad = async() => { // 拦截 config 里面的 onLoad
+      this._onLoad = async () => { // 拦截 config 里面的 onLoad
         if (!onLoad) return
         this.setData({ 'onLoad.loading': true })
 

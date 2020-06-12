@@ -1,5 +1,5 @@
 <view class="custom-class" bindtap="nav">
   <image class="image" src="{{ item.cover }}" mode="widthFix" lazy-load />
   <view class="title text-overflow-2">{{ item.title }}</view>
-  <view class="price">￥{{ item.price_in_yuan }}</view>
+  <text class="price">￥{{ item.price_in_yuan }}</text>
 </view>
