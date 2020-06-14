@@ -1,18 +1,19 @@
 import { observable, action } from 'mobx'
-import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage } from '@util'
+import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage, ui } from '@util'
 
 export default new class {
-  @observable language = ''
-  #default = 'zh' // 编码默认配置的语言
+  @observable language = 'zh' // 默认的语言 zh en
 
   #needUpdateNavigationBar = false // 是否需要更新标题
   #needUpdateTabBar = false // 是否需要更新 tabbar
 
-  @action
+  constructor() {
+    // this.init()
+  }
+
   init() {
-    const prev = wx.getStorageSync(LANGUAGE)
-    this.language = prev || this.#default
-    prev && (prev !== this.#default) && this._needUpdate()
+    const prev = getPrevLanguage()
+    if (prev !== this.language) this.setLanguage(prev)
   }
 
   @action
@@ -30,7 +31,7 @@ export default new class {
 
   setTabbar() {
     if (this.#needUpdateTabBar && isTabPage()) {
-      tabPages.forEach((tab, index) => wx.setTabBarItem({ index, text: this.t(`tab.${getCurrentPageRoute()}`) }))
+      tabPages.forEach((tab, index) => wx.setTabBarItem({ index, text: this.t(`tab.${tab}`) }))
       this.#needUpdateTabBar = false
     }
   }
@@ -44,4 +45,13 @@ export default new class {
   t(value) {
     return LOCAL[this.language][value] || ''
   }
+}
+
+function getPrevLanguage() {
+  const prev = wx.getStorageSync(LANGUAGE)
+  if (prev) return prev
+
+  const { language } = ui.getSystemInfo()
+  if (language === 'zh_CN') return 'zh'
+  if (language === 'en') return 'en'
 }

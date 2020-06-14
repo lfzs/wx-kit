@@ -1,6 +1,7 @@
 // Page 和 Component 构造器会 merge 此对象到 methods 中
 import { nav, goBack } from '@util'
 import _ from 'lodash'
+// import { i18nStore } from '@store'
 
 export default {
   noop: _.noop,
@@ -21,8 +22,8 @@ export default {
   //   return i18nStore.t(value)
   // },
 
-  // _updateTitle() { // page onShow 中执行 `this._updateTitle()`
+  // _updateTitle() {
   //  i18nStore.setTabbar()
-  //  18nStore.setCurrentTitle()
+  //  i18nStore.setCurrentTitle()
   // },
 }

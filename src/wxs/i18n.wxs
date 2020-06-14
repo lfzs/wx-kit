@@ -11,6 +11,6 @@ var LOCAL = {
 }
 
 module.exports = function(key, language, args) {
-  var value = LOCAL[language][key]
+  var value = LOCAL[language || 'zh'][key]
   return typeof value === 'function' ? value(args) : value
 }
