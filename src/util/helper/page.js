@@ -48,6 +48,7 @@ Page = (config = {}) => {
     },
 
     onShow() {
+      // this._updateTitle()
       this.data.onLoad.statusCode === 401 && token.getToken() && this._onLoad() // 其他页面授过权,更新当前页面
       onShow && onShow.call(this)
     },
