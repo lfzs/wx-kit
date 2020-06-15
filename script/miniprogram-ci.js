@@ -4,7 +4,6 @@ const dayjs = require('dayjs')
 
 const config = fs.readFileSync('project.config.json.example')
 const { appid } = JSON.parse(config.toString())
-fs.existsSync('project.config.json') || fs.writeFileSync('project.config.json', config)
 
 const project = new ci.Project({
   appid,

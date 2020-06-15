@@ -38,3 +38,5 @@
 - gulp 在新建或者删除文件时，`gulp.watch` 并不会执行，需要重新执行 gulp 编译操作
 
 - 使用 CI 部署时，需要补充 `private.key` 文件
+
+- big.js 的导入方式 `import Big from 'big.js/big'`, 使用 `new Big(0.3).minus(0.1).toString()`
