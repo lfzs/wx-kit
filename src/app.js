@@ -1,6 +1,7 @@
 import './util/helper/page'
 import './util/helper/component'
 import { ui } from '@util'
+import { mineStore } from '@store'
 
 App({
 
@@ -18,7 +19,8 @@ App({
     wx.onError(error => LOGGER.error(`onError: ${error}`))
     wx.onMemoryWarning(() => {
       const { model, system } = ui.getSystemInfo()
-      LOGGER.warn(`onMemoryWarning: model:${model},system:${system}`)
+      const { id, nickname } = mineStore.data
+      LOGGER.warn(`onMemoryWarning: model:${model}, system:${system}, userId: ${id}, nickname:${nickname}`)
     })
   },
 
