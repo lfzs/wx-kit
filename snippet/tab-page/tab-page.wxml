@@ -1,4 +1,4 @@
-<error-page status="{{ onLoad }}" />
+<error-page status="{{ onLoadStatus }}" />
 
 <view class="nav">
   <view

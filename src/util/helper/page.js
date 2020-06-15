@@ -21,20 +21,20 @@ Page = (config = {}) => {
 
       this._onLoad = async () => { // 拦截 config 里面的 onLoad
         if (!onLoad) return
-        this.setData({ 'onLoad.loading': true })
+        this.setData({ 'onLoadStatus.loading': true })
 
         try {
           await onLoad.call(this, query)
           this.setData({
-            'onLoad.statusCode': -1, // statusCode -1 代表成功
-            'onLoad.loading': false,
+            'onLoadStatus.statusCode': -1, // statusCode -1 代表成功
+            'onLoadStatus.loading': false,
           })
         } catch (e) {
-          console.warn('onLoad', e) // eslint-disable-line no-console
+          console.warn('onLoadStatus', e) // eslint-disable-line no-console
           this.setData({
-            'onLoad.statusCode': e.statusCode || 404,
-            'onLoad.errorMessage': getErrorMessage(e),
-            'onLoad.loading': false,
+            'onLoadStatus.statusCode': e.statusCode || 404,
+            'onLoadStatus.errorMessage': getErrorMessage(e),
+            'onLoadStatus.loading': false,
           })
         }
       }
@@ -49,7 +49,7 @@ Page = (config = {}) => {
 
     onShow() {
       // this._updateTitle()
-      this.data.onLoad.statusCode === 401 && token.getToken() && this._onLoad() // 其他页面授过权,更新当前页面
+      this.data.onLoadStatus.statusCode === 401 && token.getToken() && this._onLoad() // 其他页面授过权,更新当前页面
       onShow && onShow.call(this)
     },
 
