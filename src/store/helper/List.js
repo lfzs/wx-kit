@@ -68,7 +68,7 @@ export default class {
   }
 
   @action
-  unshiftItem(newItem) {
+  unshiftOrUpdate(newItem) {
     const index = this.data.findIndex(item => +item.id === +newItem.id)
     if (index > -1) {
       this.data.splice(index, 1, newItem)
