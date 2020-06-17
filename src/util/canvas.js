@@ -46,26 +46,36 @@ function drawImage(config) {
 }
 
 function drawText(config) {
-  const { text, top, left, maxWidth, fontSize, color, textAlign = 'left', baseline = 'top' } = config
+  const { text, fontSize, left, top, color, maxWidth, maxLine = 1, textAlign = 'left', lineHeight = config.fontSize } = config
   CTX.setFontSize(fontSize)
   CTX.setTextAlign(textAlign)
   CTX.setFillStyle(color)
-  CTX.setTextBaseline(baseline)
+  CTX.setTextBaseline('top')
 
-  const { width } = CTX.measureText(text)
-  if (!maxWidth || width < maxWidth) return CTX.fillText(text, left, top)
-  drawTextLine(config)
+  const lines = getTextLines(CTX, { text, fontSize, maxWidth, maxLine })
+  lines.map((item, index) => CTX.fillText(item, left, top + (lineHeight * index), maxWidth))
 }
 
-function drawTextLine(config) {
-  const { text, top, left, maxWidth, lineHeight, maxLine = 1 } = config
+function drawBackground(config) {
+  const { top, left, width, height, color } = config
+  CTX.setFillStyle(color)
+  CTX.setStrokeStyle(color)
+  CTX.fillRect(left, top, width, height)
+}
+
+// 传入 text 配置 => 返回每一行的文字数组
+export function getTextLines(ctx, { text, fontSize, maxWidth, maxLine }) {
+  ctx.setFontSize(fontSize)
+
+  const { width } = ctx.measureText(text)
+  if (!maxWidth || width < maxWidth) return [text]
 
   const lines = [''] // 每一行的文字
   let isOver = false // 文字是否多余
 
   for (const word of text) {
     const last = lines[lines.length - 1]
-    const { width } = CTX.measureText(last)
+    const { width } = ctx.measureText(last)
 
     if (width < maxWidth) lines[lines.length - 1] = `${last}${word}`
     else {
@@ -82,14 +92,5 @@ function drawTextLine(config) {
     lines[lines.length - 1] = `${last.substring(0, last.length - 1)}...`
   }
 
-  for (let index = 0; index < lines.length; index++) {
-    CTX.fillText(lines[index], left, top + (lineHeight * index), maxWidth)
-  }
-}
-
-function drawBackground(config) {
-  const { top, left, width, height, color } = config
-  CTX.setFillStyle(color)
-  CTX.setStrokeStyle(color)
-  CTX.fillRect(left, top, width, height)
+  return lines
 }
