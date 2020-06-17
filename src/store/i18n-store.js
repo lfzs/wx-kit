@@ -42,8 +42,8 @@ export default new class {
     }
   }
 
-  t(value) {
-    return LOCAL[this.language][value] || ''
+  t(key) {
+    return LOCAL[this.language][key] || ''
   }
 }
 
