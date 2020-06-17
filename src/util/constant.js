@@ -11,6 +11,7 @@ export const LOCAL = { // 参照 i18n.wxs, 提供给 js 文件使用
     '/page/main/mine/mine': '我的',
     '首页': '首页',
     '我的': '我的',
+    '到场人数': num => `到场${num}人`, // 使用 => this.t('到场人数')(1)
   },
 
   en: {
