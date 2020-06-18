@@ -1,5 +1,5 @@
 import { autorun, toJS, configure } from 'mobx'
-import { homePage, getErrorMessage, token } from '@util'
+import { homePage, getErrorMessage, token, APP_NAME } from '@util'
 import shareMethod from './share-method'
 
 configure({ enforceActions: 'always' })
@@ -7,39 +7,37 @@ configure({ enforceActions: 'always' })
 const oldPage = Page
 
 Page = (config = {}) => {
-  const { onLoad, onUnload, onShow, onShareAppMessage, store } = config
+  const { onLoad = shareMethod.noop, onUnload, onShow, onShareAppMessage, onAddToFavorites, store } = config
 
   const interceptors = {
 
-    onLoad(query) {
+    async onLoad(query) {
       this._disposers = []
-      this.store = ((typeof store === 'function') ? store.call(this, query) : store) || {}
-      Object.entries(this.store).forEach(([key, value]) => {
-        const disposer = autorun(() => this.setData({ [key]: getProperties(value) }), { name: key })
-        this._disposers.push(disposer)
-      })
+      this.setData({ 'onLoadStatus.loading': true })
 
-      this._onLoad = async () => { // 拦截 config 里面的 onLoad
-        if (!onLoad) return
-        this.setData({ 'onLoadStatus.loading': true })
+      try {
+        this.store = ((typeof store === 'function') ? await store.call(this, query) : store) || {}
+        await onLoad.call(this, query) // this.store 完毕才执行 onLoad => 以便 onLoad 中能访问 this.store
 
-        try {
-          await onLoad.call(this, query)
-          this.setData({
-            'onLoadStatus.statusCode': -1, // statusCode -1 代表成功
-            'onLoadStatus.loading': false,
-          })
-        } catch (e) {
-          console.warn('onLoadStatus', e) // eslint-disable-line no-console
-          this.setData({
-            'onLoadStatus.statusCode': e.statusCode || 404,
-            'onLoadStatus.errorMessage': getErrorMessage(e),
-            'onLoadStatus.loading': false,
-          })
-        }
+        // 注册 autorun
+        Object.entries(this.store).forEach(([key, value]) => {
+          const disposer = autorun(() => this.setData({ [key]: getProperties(value) }), { name: key })
+          this._disposers.push(disposer)
+        })
+
+        this.setData({
+          'onLoadStatus.statusCode': -1, // statusCode -1 代表成功
+          'onLoadStatus.loading': false,
+        })
+      } catch (e) {
+        console.warn('onLoadStatus', e) // eslint-disable-line no-console
+        this.setData({
+          'onLoadStatus.statusCode': e.statusCode || 404,
+          'onLoadStatus.errorMessage': getErrorMessage(e),
+          'onLoadStatus.loading': false,
+        })
       }
 
-      this._onLoad()
     },
 
     onUnload() {
@@ -49,15 +47,23 @@ Page = (config = {}) => {
 
     onShow() {
       // this._updateTitle()
-      this.data.onLoadStatus.statusCode === 401 && token.getToken() && this._onLoad() // 其他页面授过权,更新当前页面
+      this.data.onLoadStatus?.statusCode === 401 && token.getToken() && this.onLoad() // 其他页面授过权,更新当前页面
       onShow && onShow.call(this)
     },
 
     onShareAppMessage() {
-      const title = ''
+      const title = APP_NAME
       const imageUrl = ''
 
       if (onShareAppMessage) return onShareAppMessage.call(this)
+      return { title, path: homePage, imageUrl }
+    },
+
+    onAddToFavorites() {
+      const title = APP_NAME
+      const imageUrl = ''
+
+      if (onAddToFavorites) return onAddToFavorites.call(this)
       return { title, path: homePage, imageUrl }
     },
   }
