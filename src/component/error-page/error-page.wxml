@@ -24,7 +24,7 @@
 
 <template name="retry">
   <scroll-view class="error-page" catchtouchmove="noop">
-    <view class="retry" bindtap="init">
+    <view class="retry" bindtap="reload">
       <image class="icon-disconnect" src="./image/icon-disconnect.png" mode="widthFix" />
       <text>加载失败，点击屏幕重新加载</text>
     </view>

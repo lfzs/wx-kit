@@ -8,6 +8,10 @@ Component({
 
   methods: {
 
+    reload() {
+      return getCurrentPage().onLoad()
+    },
+
     async onAuth(e) {
       if (!e.detail.userInfo) return
 
@@ -15,7 +19,7 @@ Component({
       const userInfo = await wxp.getUserInfo()
       await autoLoading(token.login(code, userInfo))
 
-      return getCurrentPage()._onLoad()
+      return this.reload()
     },
   },
 })
