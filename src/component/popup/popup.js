@@ -6,11 +6,21 @@ Component({
   properties: {
     show: Boolean,
     img: String,
+    url: String,
     saveBtn: Boolean,
     closeBtn: Boolean,
   },
 
+  data: {
+    imgSuccess: false,
+  },
+
   methods: {
+
+    loadImg() {
+      this.setData({ imgSuccess: true })
+    },
+
     onClose() {
       this.setData({ show: false })
     },

@@ -1,4 +1,4 @@
-// 自定义页面
+// 根据接口返回的组件配置 => 渲染出对应组件
 import { nav, request, toast } from '@util'
 
 Component({
