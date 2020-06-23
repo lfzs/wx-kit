@@ -1,2 +1,2 @@
 <error-page status="{{ onLoadStatus }}" />
-<custom-page components="{{ homeStore.data.components }}" />
+<custom-item components="{{ homeStore.data.components }}" />

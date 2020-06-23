@@ -51,7 +51,7 @@
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
     "error-page": "/component/error-page/error-page",
-    "custom-page": "/component/custom-page/custom-page",
+    "custom-item": "/component/custom-item/custom-item",
     "item-card": "/component/item-card/item-card",
     "img-icon": "/component/img-icon/img-icon",
     "popup": "/component/popup/popup",
