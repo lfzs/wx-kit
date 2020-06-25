@@ -68,20 +68,23 @@ const getNpm = function() {
   return () => through.obj((file, encoding, callback) => {
     if (!file.isBuffer()) return callback(null, file)
     const contents = file.contents.toString()
+
+    // 提取符合的包名
+    const reg = /require\((.*?)\)/g
+    const names = (contents.match(reg) || []).filter(i => /require\("(?!(\.|\/))/.test(i)).map(i => i.split('"')[1])
+
+    // 引入包路径替换
     const zIndex = path.relative(file.dirname, file.base).split(path.sep).join('/')
-    const newContents = contents.replace(/require\("(?!\.)/g, `require("${zIndex || '.'}/`) // 非形如 ./ ../ 开头
+    let newContents = contents.replace(/require\("(?!(\.|\/))/g, `require("${zIndex || '.'}/`) // 替换包的路径 非形如 ./ ../ / 开头
+    newContents = newContents.replace(/require\("(?=\/)/g, `require("${zIndex || '.'}`) // 替换绝对路径 / 开头。注意: 小程序 require 不支持绝对路径，所以当使用绝对路径 / 将会被替换为相对 src 的路径
     file.contents = Buffer.from(newContents)
 
-    const reg = /require\((.*?)\)/g
-    const names = (contents.match(reg) || []).filter(i => !i.includes('./'))
-
+    // 构造入口
     const entry = {}
-    names.map(i => {
-      const name = i.split('"')[1]
-      if (!cacheNames[name]) cacheNames[name] = entry[name] = name
-    })
-
+    names.map(name => !cacheNames[name] && (cacheNames[name] = entry[name] = name))
     // console.log(entry)
+
+    // 打包
     if (!Object.keys(entry).length) return callback(null, file)
     webpack({ ...webpackConfig, entry }).run((err, stats) => callback(err || stats.hasErrors() ? JSON.stringify(entry, null, 2) : null, file))
   })
