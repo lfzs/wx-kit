@@ -8,21 +8,22 @@ before_script:
 
 lint:
   stage: test
-  script:
-    - yarn lint
+  script: yarn lint
+  retry: 1
+  except:
+    - develop
+    - master
 
 deploy_staging:
   stage: build
-  script:
-    - yarn deploy:staging
+  script: yarn deploy:staging
   retry: 1
   only:
     - develop
 
 deploy_production:
   stage: build
-  script:
-    - yarn deploy:production
+  script: yarn deploy:production
   retry: 1
   only:
     - master
