@@ -3,7 +3,6 @@ const changed = require('gulp-changed')
 const eslint = require('gulp-eslint')
 const gulpif = require('gulp-if')
 const babel = require('gulp-babel')
-const sourcemaps = require('gulp-sourcemaps')
 const del = require('del')
 const color = require('colors')
 const notifier = require('node-notifier')
@@ -50,17 +49,15 @@ function handleError(err) {
 }
 
 function bundleJS() {
-  return gulp.src(paths.js)
+  return gulp.src(paths.js, { sourcemaps: true })
     .pipe(changed('dist'))
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(gulpif(!isDev, eslint.failAfterError()))
     .pipe(gulpif(!isDev, eslint.results(({ warningCount }) => warningCount > 0 && process.exit(1))))
-    .pipe(sourcemaps.init())
     .pipe(babel())
-    .pipe(sourcemaps.write('.'))
     .pipe(getNpm())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist', { sourcemaps: '.' }))
 }
 
 const getNpm = function() {
