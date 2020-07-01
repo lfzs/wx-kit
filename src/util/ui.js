@@ -3,11 +3,6 @@ export default new class {
   #menuButtonInfo = {} // 右上角胶囊信息
   #navbarInfo = {} // 自定义导航条信息 单位 px
 
-  constructor() {
-    this._setSystemInfo()
-    this._setMenuButtonInfo()
-  }
-
   _setSystemInfo() {
     if (this.#systemInfo.platform) return
 

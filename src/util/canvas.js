@@ -59,12 +59,12 @@ function drawText(config) {
 function drawBackground(config) {
   const { top, left, width, height, color } = config
   CTX.setFillStyle(color)
-  CTX.setStrokeStyle(color)
   CTX.fillRect(left, top, width, height)
 }
 
 // 传入 text 配置 => 返回每一行的文字数组
-export function getTextLines(ctx, { text, fontSize, maxWidth, maxLine }) {
+export function getTextLines(ctx, { text, fontSize, maxWidth, maxLine }) { // 不传 maxLine 将计算所有
+  ctx.save()
   ctx.setFontSize(fontSize)
 
   const { width } = ctx.measureText(text)
@@ -79,7 +79,7 @@ export function getTextLines(ctx, { text, fontSize, maxWidth, maxLine }) {
 
     if (width < maxWidth) lines[lines.length - 1] = `${last}${word}`
     else {
-      if (lines.length >= maxLine) {
+      if (maxLine && lines.length >= maxLine) {
         isOver = true
         break
       }
@@ -92,5 +92,6 @@ export function getTextLines(ctx, { text, fontSize, maxWidth, maxLine }) {
     lines[lines.length - 1] = `${last.substring(0, last.length - 1)}...`
   }
 
+  ctx.restore()
   return lines
 }
