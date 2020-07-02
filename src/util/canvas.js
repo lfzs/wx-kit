@@ -1,71 +1,90 @@
 /*
-  在 wxml 中需要提前声明
-  <canvas canvas-id="canvas" style="width: 375px; height: 375px; background-color: red;"/>
+  在页面的 wxml 中需要提前声明
+  <canvas id="canvas" type="2d" style="position:fixed; left: 100vw;" />
 */
 
-let CTX
-export default function(canvasId, config = []) {
-  CTX = wx.createCanvasContext(canvasId)
+import { ui, wxp } from '@util'
 
-  config.forEach(item => {
-    const type = item.type?.toLowerCase()
-    switch (type) {
-      case 'image':
-        drawImage(item)
-        break
-      case 'text':
-        drawText(item)
-        break
-      case 'background':
-        drawBackground(item)
-        break
-    }
-  })
+let CTX, canvas
+export default async function({ id = 'canvas', width = 300, height = 150, config = [] }) {
+  canvas = await getCanvas(id)
 
-  return new Promise((resolve, reject) => {
-    CTX.draw(false, () => wx.canvasToTempFilePath({ canvasId, quality: 1, success: resolve, fail: reject }))
-  })
+  const { pixelRatio } = ui.getSystemInfo()
+  canvas.width = width * pixelRatio
+  canvas.height = height * pixelRatio
+
+  CTX = canvas.getContext('2d')
+  CTX.scale(pixelRatio, pixelRatio)
+
+  await start(config)
+  const { tempFilePath } = await wxp.canvasToTempFilePath({ canvas })
+  return tempFilePath
 }
 
-function drawImage(config) {
-  // info 为 wx.getImageInfo 的信息，即图片的真实宽高
-  const { top, left, width, height, url, info } = config
-  if (info) {
-    // aspectFill 模式，水平100%，垂直居中截取
-    CTX.save()
-    CTX.beginPath()
-    CTX.rect(left, top, width, height)
-    CTX.clip()
-    const newHeight = width / info.width * info.height
-    const topOffset = newHeight > height ? (newHeight - height) / 2 : 0
-    CTX.drawImage(url, left, top - topOffset, width, newHeight)
-    CTX.restore()
-  } else {
-    CTX.drawImage(url, left, top, width, height)
+async function start(config) {
+  for (const item of config) {
+    const type = item.type?.toLowerCase()
+
+    if (type === 'image') await drawImage(item)
+    else if (type === 'text') await drawText(item)
+    else if (type === 'background') drawBackground(item)
   }
 }
 
-function drawText(config) {
-  const { text, fontSize, left, top, color, maxWidth, maxLine = 1, textAlign = 'left', lineHeight = config.fontSize } = config
-  CTX.setFontSize(fontSize)
-  CTX.setTextAlign(textAlign)
-  CTX.setFillStyle(color)
-  CTX.setTextBaseline('top')
+function drawImage(config) {
+  const { top, left, width, height, url, round } = config
 
-  const lines = getTextLines(CTX, { text, fontSize, maxWidth, maxLine })
+  const img = canvas.createImage()
+  img.src = url
+  return new Promise(resolve => {
+    // 绘制图片时宽度 100% 垂直方向居中截取
+    img.onload = () => {
+      CTX.save()
+      CTX.beginPath()
+      CTX.rect(left, top, width, height)
+      CTX.clip()
+      if (round) { // 如果指定半径，将将会以该矩形中心绘制圆形
+        const x = (left + width) / 2
+        const y = (top + height) / 2
+        CTX.beginPath()
+        CTX.arc(x, y, round, 0, 2 * Math.PI)
+        CTX.clip()
+      }
+      const newHeight = width / img.width * img.height
+      const topOffset = (newHeight - height) / 2
+      CTX.drawImage(img, left, top - topOffset, width, newHeight)
+      CTX.restore()
+      resolve()
+    }
+  })
+}
+
+function drawText(config) {
+  const { text, fontSize = 10, left, top, color, maxWidth, maxLine, textAlign = 'left', lineHeight = config.fontSize, baseline = 'top' } = config
+  CTX.save()
+  CTX.textAlign = textAlign
+  CTX.fillStyle = color
+  CTX.textBaseline = baseline
+  CTX.font = `${fontSize}px sans-serif`
+
+  const lines = getTextLines(canvas, { text, fontSize, maxWidth, maxLine })
   lines.map((item, index) => CTX.fillText(item, left, top + (lineHeight * index), maxWidth))
+  CTX.restore()
 }
 
 function drawBackground(config) {
   const { top, left, width, height, color } = config
-  CTX.setFillStyle(color)
+  CTX.save()
+  CTX.fillStyle = color
   CTX.fillRect(left, top, width, height)
+  CTX.restore()
 }
 
-// 传入 text 配置 => 返回每一行的文字数组
-export function getTextLines(ctx, { text, fontSize, maxWidth, maxLine }) { // 不传 maxLine 将计算所有
+// 传入 text 配置 => 返回每一行的文字数组 maxLine 不传将计算所有
+export function getTextLines(canvas, { text, fontSize, maxWidth, maxLine }) {
+  const ctx = canvas.getContext('2d')
   ctx.save()
-  ctx.setFontSize(fontSize)
+  ctx.font = `${fontSize}px sans-serif`
 
   const { width } = ctx.measureText(text)
   if (!maxWidth || width < maxWidth) return [text]
@@ -94,4 +113,14 @@ export function getTextLines(ctx, { text, fontSize, maxWidth, maxLine }) { // �
 
   ctx.restore()
   return lines
+}
+
+// 获取 canvas 实例
+export function getCanvas(id) {
+  return new Promise(resolve => {
+    wx.createSelectorQuery()
+      .select(`#${id}`)
+      .fields({ node: true, size: true })
+      .exec(res => resolve(res[0].node))
+  })
 }

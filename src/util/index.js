@@ -7,7 +7,7 @@ export { nav, goBack, goHome, homePage, getCurrentPage, isTabPage, canBack, tabP
 export modal from './modal'
 export autoLoading from './auto-loading'
 export sleep from './sleep'
-export canvas, { getTextLines } from './canvas'
+export canvas, { getCanvas, getTextLines } from './canvas'
 export pullDownRefresh from './pull-down-refresh'
 export getErrorMessage from './get-error-message'
 export toast from './toast'
