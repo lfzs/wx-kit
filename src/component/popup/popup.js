@@ -1,6 +1,6 @@
 // 图片弹窗
 
-import { authApi, nav } from '@util'
+import { authApi, nav, toast } from '@util'
 
 Component({
   properties: {
@@ -34,6 +34,8 @@ Component({
       await authApi('saveImageToPhotosAlbum')
       wx.saveImageToPhotosAlbum({ filePath: this.data.img }) // filePath 需要是临时路径
       this.onClose()
+      this.triggerEvent('save')
+      await toast('保存成功')
     },
   },
 
