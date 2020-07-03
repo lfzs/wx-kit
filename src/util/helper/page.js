@@ -29,11 +29,11 @@ Page = (config = {}) => {
           'onLoadStatus.statusCode': -1, // statusCode -1 代表成功
           'onLoadStatus.loading': false,
         })
-      } catch (e) {
-        console.warn('onLoadStatus', e) // eslint-disable-line no-console
+      } catch (error) {
+        console.warn('onLoadStatus', error) // eslint-disable-line no-console
         this.setData({
-          'onLoadStatus.statusCode': e.statusCode || 404,
-          'onLoadStatus.errorMessage': getErrorMessage(e),
+          'onLoadStatus.statusCode': error.statusCode || 404,
+          'onLoadStatus.errorMessage': getErrorMessage(error),
           'onLoadStatus.loading': false,
         })
       }

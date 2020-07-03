@@ -9,11 +9,11 @@ async function loading(promise, title = '加载中', successText) {
     wx.hideLoading()
     if (successText) await toast(successText, 'success', 3000)
     return res
-  } catch (e) {
+  } catch (error) {
     wx.hideLoading()
-    const errorMessage = getErrorMessage(e)
+    const errorMessage = getErrorMessage(error)
     if (ignoreKeys.every(key => !errorMessage.includes(key))) await wxp.showModal({ title: '提示', content: errorMessage, showCancel: false, confirmText: '知道了' })
-    throw e
+    throw error
   }
 }
 

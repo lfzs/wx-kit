@@ -36,7 +36,7 @@ function drawImage(config) {
 
   const img = canvas.createImage()
   img.src = url
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     // 绘制图片时宽度 100% 垂直方向居中截取
     img.onload = () => {
       CTX.save()
@@ -56,6 +56,7 @@ function drawImage(config) {
       CTX.restore()
       resolve()
     }
+    img.onerror = reject
   })
 }
 
@@ -117,10 +118,14 @@ export function getTextLines(canvas, { text, fontSize, maxWidth, maxLine }) {
 
 // 获取 canvas 实例
 export function getCanvas(id) {
-  return new Promise(resolve => {
-    wx.createSelectorQuery()
-      .select(`#${id}`)
-      .fields({ node: true, size: true })
-      .exec(res => resolve(res[0].node))
+  return new Promise((resolve, reject) => {
+    try {
+      wx.createSelectorQuery()
+        .select(`#${id}`)
+        .fields({ node: true, size: true })
+        .exec(res => resolve(res[0].node))
+    } catch (error) {
+      reject(error)
+    }
   })
 }

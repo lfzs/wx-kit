@@ -33,9 +33,9 @@ export default class extends Cache {
       await autoLoading(payOrderStore.pay())
       waitSendOrderListStore.unshift(this.data)
       await this.subscribeModal()
-    } catch (e) {
+    } catch (error) {
       waitPayOrderListStore.unshift(this.data)
-      throw e
+      throw error
     } finally {
       allOrderListStore.unshift(this.data)
     }

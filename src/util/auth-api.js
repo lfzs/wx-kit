@@ -25,8 +25,8 @@ export default async function(apiName) {
 
   try {
     await wxp.authorize({ scope: API_SCOP[apiName][0] })
-  } catch (e) {
-    const errMsg = e?.errMsg
+  } catch (error) {
+    const errMsg = error?.errMsg
     if (errMsg.indexOf('authorize:fail') > -1) { // 拒绝了
       const { confirm } = await modal({ title: '提示', content: `授权失败，请在设置中打开${API_SCOP[apiName][1]}开关`, confirmText: '去打开' })
       if (confirm) {
@@ -34,7 +34,7 @@ export default async function(apiName) {
         if (authSetting[API_SCOP[apiName][0]]) return
       }
     }
-    throw e
+    throw error
   }
 
 }
