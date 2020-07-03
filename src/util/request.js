@@ -39,4 +39,5 @@ async function handleResponse(res, options) {
 request.get = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth })
 request.post = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth, method: 'POST' })
 request.put = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth, method: 'PUT' })
+request.delete = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth, method: 'DELETE' })
 export default request

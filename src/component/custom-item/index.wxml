@@ -61,7 +61,7 @@
 
 <template name="custom-product-list">
   <view class="custom-product-list" style="background-color: {{ config.backgroundColor }}">
-    <item-card wx:for="{{ itemsList[key].items }}" wx:key="id" item="{{ item }}" custom-class="item" url="/page/item/detail/detail?id={{ item.id }}" />
+    <card-item wx:for="{{ itemsList[key].items }}" wx:key="id" item="{{ item }}" custom-class="item" url="/page/item/detail/detail?id={{ item.id }}" />
   </view>
 </template>
 
