@@ -50,12 +50,14 @@
   "style": "v2",
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
-    "error-page": "/component/error-page/error-page",
-    "custom-item": "/component/custom-item/custom-item",
-    "item-card": "/component/item-card/item-card",
-    "img-icon": "/component/img-icon/img-icon",
-    "popup": "/component/popup/popup",
-    "popup-share": "/component/popup-share/popup-share",
-    "loading-more": "/component/loading-more/loading-more"
+    "mask": "/component/mask/index",
+    "stepper": "/component/stepper/index",
+    "error-page": "/component/error-page/index",
+    "custom-item": "/component/custom-item/index",
+    "card-item": "/component/card-item/index",
+    "img-icon": "/component/img-icon/index",
+    "popup": "/component/popup/index",
+    "popup-share": "/component/popup-share/index",
+    "loading-more": "/component/loading-more/index"
   }
 }
