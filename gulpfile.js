@@ -75,8 +75,7 @@ const getNpm = function() {
 
     // 引入包路径替换
     const zIndex = path.relative(file.dirname, file.base).split(path.sep).join('/')
-    let newContents = contents.replace(/require\("(?!(\.|\/))/g, `require("${zIndex || '.'}/`) // 替换包的路径 非形如 ./ ../ / 开头
-    newContents = newContents.replace(/require\("(?=\/)/g, `require("${zIndex || '.'}`) // 替换绝对路径 / 开头。注意: 小程序 require 不支持绝对路径，所以当使用绝对路径 / 将会被替换为相对 src 的路径
+    const newContents = contents.replace(/require\("(?!(\.|\/))/g, `require("${zIndex || '.'}/`) // 替换包的路径 非形如 . 或 / 开头
     file.contents = Buffer.from(newContents)
 
     // 构造入口
