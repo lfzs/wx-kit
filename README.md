@@ -40,5 +40,3 @@
 - 使用 CI 部署时，需要补充 `private.key` 文件
 
 - big.js 的导入方式 `import Big from 'big.js/big'`, 使用 `new Big(0.3).minus(0.1).toString()`
-
-- 小程序的模块导入不支持绝对路径 `/` 开头，当使用绝对路径导入时，gulp 会将绝对路径指向 src 目录
