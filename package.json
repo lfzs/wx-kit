@@ -22,16 +22,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-proposal-decorators": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.5",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
     "@babel/plugin-proposal-optional-chaining": "^7.10.4",
     "@babel/plugin-proposal-private-methods": "^7.10.4",
-    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "autoprefixer": "^9.8.4",
+    "autoprefixer": "^9.8.5",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^4.0.0",
@@ -40,7 +40,7 @@
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
-    "eslint": "^7.3.1",
+    "eslint": "^7.5.0",
     "eslint-plugin-import": "^2.22.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -54,7 +54,7 @@
     "gulp-stylelint": "^13.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "miniprogram-ci": "^1.0.43",
+    "miniprogram-ci": "^1.0.51",
     "node-notifier": "^7.0.1",
     "postcss-px2units": "^0.2.0",
     "stylelint": "^13.6.1",
@@ -63,10 +63,10 @@
     "webpack": "^4.43.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.10.4",
+    "@babel/runtime-corejs3": "^7.10.5",
     "big.js": "^5.2.2",
-    "dayjs": "^1.8.28",
-    "lodash": "^4.17.15",
+    "dayjs": "^1.8.29",
+    "lodash": "^4.17.19",
     "mobx": "^4.15.4"
   }
 }
