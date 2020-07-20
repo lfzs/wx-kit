@@ -7,7 +7,7 @@ configure({ enforceActions: 'always' })
 const oldPage = Page
 
 Page = (config = {}) => {
-  const { onLoad = shareMethod.noop, onUnload, onShow, onShareAppMessage, onAddToFavorites, store } = config
+  const { onLoad = shareMethod.noop, onUnload, onShow, onShareAppMessage, onShareTimeline, onAddToFavorites, store } = config
 
   const interceptors = {
 
@@ -52,11 +52,21 @@ Page = (config = {}) => {
     },
 
     onShareAppMessage() {
+      if (onShareAppMessage) return onShareAppMessage.call(this)
+
       const title = APP_NAME
       const imageUrl = ''
-
-      if (onShareAppMessage) return onShareAppMessage.call(this)
       return { title, path: homePage, imageUrl }
+    },
+
+    onShareTimeline() {
+      if (onShareTimeline) return onShareTimeline.call(this)
+
+      const title = APP_NAME
+      const query = ''
+      const imageUrl = ''
+      return { title, query, imageUrl }
+
     },
 
     onAddToFavorites() {
