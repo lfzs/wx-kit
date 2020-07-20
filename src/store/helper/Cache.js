@@ -19,4 +19,12 @@ export default class {
 
     return this.caches[key]
   }
+
+  static remove(id) {
+    if (this._id && id) {
+      const key = `${this._id}${id}`
+      const value = this.caches[key]
+      value && delete this.caches[key]
+    }
+  }
 }

@@ -15,6 +15,11 @@ export default {
     url && nav(url)
   },
 
+  toggle(e) {
+    const { key } = e.currentTarget.dataset
+    key && this.setData({ [key]: !this.data[key] })
+  },
+
   goBack() { goBack() },
 
   // t(key) {
