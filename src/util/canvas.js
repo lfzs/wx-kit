@@ -22,12 +22,15 @@ export default async function({ id = 'canvas', width = 300, height = 150, config
 }
 
 async function start(config) {
-  for (const item of config) {
-    const type = item.type?.toLowerCase()
+  const TYPE = {
+    'image': drawImage,
+    'text': drawText,
+    'background': drawBackground,
+  }
 
-    if (type === 'image') await drawImage(item)
-    else if (type === 'text') await drawText(item)
-    else if (type === 'background') drawBackground(item)
+  for (const item of config) {
+    const fn = TYPE[item.type?.toLowerCase()]
+    fn && await fn(item)
   }
 }
 
