@@ -5,7 +5,7 @@ function urlJoin(baseURL, url) {
   return `${baseURL}/${url}`
 }
 
-async function request({ url = '', data = {}, method = 'GET', isNeedAuth = true }) { // isNeedAuth 用来全局配置是否需要带着 auth 访问接口
+async function request({ url = '', data = {}, method = 'GET', isNeedAuth = true }) { // isNeedAuth 用来配置是否需要带着 auth 信息访问接口
   const authorization = isNeedAuth ? await token.getToken() : ''
   const options = { url, data, method, header: { Authorization: authorization } }
   const res = await wxp.request(options)

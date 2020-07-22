@@ -6,7 +6,7 @@
     "start": "yarn && cross-env NODE_ENV=development gulp dev",
     "staging": "yarn && cross-env NODE_ENV=staging gulp build",
     "build": "yarn && cross-env NODE_ENV=production gulp build",
-    "lint": "yarn && stylelint --max-warnings 0 'src/**/*.less' && eslint --max-warnings 0 src/",
+    "lint": "yarn && stylelint --max-warnings 0 'src/**/*.less' && eslint --max-warnings 0 'src/**/*.js'",
     "deploy:staging": "yarn staging && cross-env NODE_ENV=staging node script/miniprogram-ci.js",
     "deploy:production": "yarn build && cross-env NODE_ENV=production node script/miniprogram-ci.js"
   },
