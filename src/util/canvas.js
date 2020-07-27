@@ -6,8 +6,8 @@
 import { ui, wxp } from '@util'
 
 let CTX, canvas
-export default async function({ id = 'canvas', width = 300, height = 150, config = [] }) {
-  canvas = await getCanvas(id)
+export default async function({ id = 'canvas', width = 300, height = 150, config = [], cvs }) { // 可传入 canvas 实例 cvs
+  canvas = cvs || await getCanvas(id)
 
   const { pixelRatio } = ui.getSystemInfo()
   canvas.width = width * pixelRatio
@@ -69,7 +69,7 @@ function drawText(config) {
   CTX.textAlign = textAlign
   CTX.fillStyle = color
   CTX.textBaseline = baseline
-  CTX.font = `${fontSize}px sans-serif`
+  CTX.font = `${fontSize}px sans-serif` // 斜体、加粗 真机暂时无效
 
   const lines = getTextLines(canvas, { text, fontSize, maxWidth, maxLine })
   lines.map((item, index) => CTX.fillText(item, left, top + (lineHeight * index), maxWidth))
