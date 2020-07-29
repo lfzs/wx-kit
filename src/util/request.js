@@ -5,14 +5,16 @@ function urlJoin(baseURL, url) {
   return `${baseURL}/${url}`
 }
 
-async function request({ url = '', data = {}, method = 'GET', isNeedAuth = true }) { // isNeedAuth 用来配置是否需要带着 auth 信息访问接口
-  const authorization = isNeedAuth ? await token.getToken() : ''
-  const options = { url, data, method, header: { Authorization: authorization } }
-  const res = await wxp.request(options)
-  return handleResponse(res, options)
+async function request(config) {
+
+  const Authorization = (config.isNeedAuth ?? true) ? await token.getToken() : '' // isNeedAuth 用来配置是否需要带着 token 信息访问接口
+  config.header = { ...config.header, Authorization }
+
+  const res = await wxp.request(config)
+  return handleResponse(res, config)
 }
 
-async function handleResponse(res, options) {
+async function handleResponse(res, config) {
   const { data, statusCode, header } = res
 
   if (statusCode === 401) {
@@ -22,22 +24,22 @@ async function handleResponse(res, options) {
       const { code } = await wxp.login()
       const userInfo = await wxp.getUserInfo()
       await token.login(code, userInfo)
-      return request(options)
+      return request(config)
     }
 
     // 不需要
     // const { code } = await wxp.login()
     // await token.login(code)
-    // return request(options)
+    // return request(config)
   }
 
   if (statusCode >= 400 && statusCode < 600) throw { ...data, statusCode } // 错误
-  if (options.method === 'GET' && header['X-Page']) res.meta = { per_page: +header['X-Per-Page'], total: +header['X-Total'] }
+  if (config.method === 'GET' && header['X-Page']) res.meta = { per_page: +header['X-Per-Page'], total: +header['X-Total'] }
   return res
 }
 
-request.get = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth })
-request.post = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth, method: 'POST' })
-request.put = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth, method: 'PUT' })
-request.delete = (url, data, isNeedAuth) => request({ url: urlJoin(baseURL, url), data, isNeedAuth, method: 'DELETE' })
+request.get = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'GET' })
+request.post = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'POST' })
+request.put = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'PUT' })
+request.delete = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'DELETE' })
 export default request

@@ -6,6 +6,6 @@ export default new class {
 
   @fetchAction
   fetchData() {
-    return request.get('custom_pages/home', {}, false)
+    return request.get('custom_pages/home', {}, { isNeedAuth: false })
   }
 }
