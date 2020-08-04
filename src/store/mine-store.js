@@ -13,8 +13,8 @@ export default new class {
     if (userInfo.avatarUrl) {
       userInfo.avatar = userInfo.avatarUrl
       userInfo.nickname = userInfo.nickName
-      delete userInfo.nickName
-      delete userInfo.avatarUrl
+      userInfo.nickName = undefined
+      userInfo.avatarUrl = undefined
     }
     const { data } = yield request.put('user', userInfo)
     this.data = data
