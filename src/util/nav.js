@@ -1,9 +1,6 @@
-export const tabPages = [
-  '/page/main/home/home',
-  '/page/main/mine/mine',
-]
+import { TAB_PAGES } from '@util'
 
-export const homePage = tabPages[0]
+export const homePage = TAB_PAGES[0]
 
 export function getCurrentPage() {
   const pages = getCurrentPages()
@@ -11,7 +8,8 @@ export function getCurrentPage() {
 }
 
 export function isTabPage(url = getCurrentPageRoute()) {
-  return tabPages.some(tab => tab.includes(url))
+  url = url.split('?')[0]
+  return TAB_PAGES.some(tab => tab.includes(url))
 }
 
 export function getCurrentPageRoute() {
