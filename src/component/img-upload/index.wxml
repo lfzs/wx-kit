@@ -2,7 +2,10 @@
 
   <view wx:for="{{ images }}" wx:key="*this" class="item">
     <image wx:if="{{ item }}" src="{{ item }}" mode="aspectFill" class="image" bindtap="viewImg" data-url="{{ item }}"/>
-    <view wx:else class="image warn flex-center"><icon type="warn" size="40rpx" /></view>
+    <view wx:else class="image flex-center" bindtap="retryChooseImage" data-index="{{ index }}">
+      <image src="{{ errImages[index] }}" mode="aspectFill" class="err-image" />
+      <icon type="warn" size="40rpx" class="warn" />
+    </view>
 
     <icon type="clear" size="40rpx" class="close" bindtap="close" data-index="{{ index }}" />
   </view>
