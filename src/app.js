@@ -1,5 +1,5 @@
-import './util/helper/page'
-import './util/helper/component'
+import '@/helper/page'
+import '@/helper/component'
 import { reporter, updater } from '@util'
 
 App({

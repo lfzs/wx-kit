@@ -1,5 +1,4 @@
 export fetchAction from './fetch-action'
-export { host, baseURL } from './env'
 export wxp from './wxp'
 export authApi from './auth-api'
 export * from './constant'
