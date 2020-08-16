@@ -1,4 +1,4 @@
-import { TAB_PAGES } from '@util'
+import { TAB_PAGES } from '@/util'
 
 export const homePage = TAB_PAGES[0]
 

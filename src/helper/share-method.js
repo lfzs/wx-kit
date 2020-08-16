@@ -1,6 +1,6 @@
 // Page 和 Component 构造器会 merge 此对象到 methods 中
-import { nav, goBack } from '@util'
-// import { i18nStore } from '@store'
+import { nav, goBack } from '@/util'
+// import { i18nStore } from '@/store'
 
 export default {
   noop: () => {},

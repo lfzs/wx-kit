@@ -1,5 +1,5 @@
-import { mineStore } from '@store'
-import { TOKEN_KEY, wxp, request } from '@util'
+import { mineStore } from '@/store'
+import { TOKEN_KEY, wxp, request } from '@/util'
 
 export default new class {
 

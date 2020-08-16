@@ -1,6 +1,6 @@
 // 实时记录错误信息 => 可在小程序后台 实时日志 查看
-import { ui } from '@util'
-import { mineStore } from '@store'
+import { ui } from '@/util'
+import { mineStore } from '@/store'
 
 export default function() {
   const { miniProgram } = wx.getAccountInfoSync()

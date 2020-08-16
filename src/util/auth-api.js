@@ -1,4 +1,4 @@
-import { wxp, modal } from '@util'
+import { wxp, modal } from '@/util'
 
 const API_SCOP = {
   // getUserInfo: ['scope.userInfo', '用户信息'], // 必须要按钮触发

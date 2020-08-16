@@ -1,6 +1,6 @@
 // 图片弹窗
 
-import { authApi, nav, toast } from '@util'
+import { authApi, nav, toast } from '@/util'
 
 Component({
   properties: {

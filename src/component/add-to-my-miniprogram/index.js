@@ -1,5 +1,5 @@
 // 添加到我的小程序
-import { ADD_TO_MY_MINIPROGRAM, ui } from '@util'
+import { ADD_TO_MY_MINIPROGRAM, ui } from '@/util'
 
 Component({
 

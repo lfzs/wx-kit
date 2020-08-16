@@ -1,4 +1,4 @@
-import { mineStore } from '@store'
+import { mineStore } from '@/store'
 
 Page({
   store: {

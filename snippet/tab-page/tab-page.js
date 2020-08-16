@@ -1,4 +1,4 @@
-import { allOrderListStore, waitPayOrderListStore, waitSendOrderListStore, waitConfirmOrderListStore } from '@store'
+import { allOrderListStore, waitPayOrderListStore, waitSendOrderListStore, waitConfirmOrderListStore } from '@/store'
 const page = [
   { text: '全部', name: 'allOrderListStore' },
   { text: '待付款', name: 'waitPayOrderListStore' },

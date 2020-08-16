@@ -1,5 +1,5 @@
-import { OrderDetailStore } from '@store'
-import { request, wxp, sleep } from '@util'
+import { OrderDetailStore } from '@/store'
+import { request, wxp, sleep } from '@/util'
 
 export default class PayOrderStore {
   constructor(orderId) {

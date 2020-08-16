@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage, ui } from '@util'
+import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage, ui } from '@/util'
 
 export default new class {
   @observable language = 'zh' // 默认的语言 zh en

@@ -1,4 +1,4 @@
-import { request, wxp, toast } from '@util'
+import { request, wxp, toast } from '@/util'
 
 // const target = [
 //  ['Activity', 1, [], // [type, id, tmplIds]

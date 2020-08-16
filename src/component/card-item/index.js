@@ -1,5 +1,5 @@
 // 商品展示
-import { nav } from '@util'
+import { nav } from '@/util'
 
 Component({
   externalClasses: ['custom-class'],
