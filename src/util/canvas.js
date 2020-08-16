@@ -3,7 +3,7 @@
   <canvas id="canvas" type="2d" style="position:fixed; left: 100vw;" />
 */
 
-import { ui, wxp } from '@util'
+import { ui, wxp } from '@/util'
 
 let CTX, canvas
 export default async function({ id = 'canvas', width = 300, height = 150, config = [], cvs }) { // 可传入 canvas 实例 cvs

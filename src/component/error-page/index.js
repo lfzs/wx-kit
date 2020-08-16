@@ -1,5 +1,5 @@
 // 根据 onLoadStatus 显示错误信息 (loading 状态暂不捕获，需要的页面可根据 onLoadStatus.loading 单独处理)
-import { autoLoading, wxp, getCurrentPage, token } from '@util'
+import { autoLoading, wxp, getCurrentPage, token } from '@/util'
 
 Component({
   properties: {

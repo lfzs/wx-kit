@@ -1,6 +1,6 @@
 import { observable, flow } from 'mobx'
-import { fetchAction, request, subscribeMessageModal, autoLoading } from '@util'
-import { Cache, waitPayOrderListStore, allOrderListStore, waitConfirmOrderListStore, waitSendOrderListStore, PayOrderStore, configStore } from '@store'
+import { fetchAction, request, subscribeMessageModal, autoLoading } from '@/util'
+import { Cache, waitPayOrderListStore, allOrderListStore, waitConfirmOrderListStore, waitSendOrderListStore, PayOrderStore, configStore } from '@/store'
 
 export default class extends Cache {
   @observable data = {}

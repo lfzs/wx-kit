@@ -1,4 +1,4 @@
-import { wxp, toast, getErrorMessage } from '@util'
+import { wxp, toast, getErrorMessage } from '@/util'
 
 const ignoreKeys = []
 

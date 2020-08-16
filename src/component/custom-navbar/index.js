@@ -1,5 +1,5 @@
 // 自定义导航
-import { goBack, isTabPage, APP_NAME, ui } from '@util'
+import { goBack, isTabPage, APP_NAME, ui } from '@/util'
 
 Component({
 

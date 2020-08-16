@@ -1,5 +1,5 @@
 // 微信授权按钮
-import { mineStore } from '@store'
+import { mineStore } from '@/store'
 
 Component({
 

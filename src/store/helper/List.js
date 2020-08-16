@@ -1,5 +1,5 @@
 import { computed, observable, flow, action } from 'mobx'
-import { request } from '@util'
+import { request } from '@/util'
 
 export default class {
   @observable data = []

@@ -1,5 +1,5 @@
-import { homeStore } from '@store'
-import { pullDownRefresh } from '@util'
+import { homeStore } from '@/store'
+import { pullDownRefresh } from '@/util'
 
 Page({
   store: {

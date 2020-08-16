@@ -1,4 +1,4 @@
-import { request, wxp } from '@util'
+import { request, wxp } from '@/util'
 
 export default new class {
 

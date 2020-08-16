@@ -1,4 +1,4 @@
-import { wxp, token } from '@util'
+import { wxp, token } from '@/util'
 import { baseURL } from '@/env'
 
 function urlJoin(baseURL, url) {

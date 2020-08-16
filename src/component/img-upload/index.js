@@ -1,4 +1,4 @@
-import { autoLoading, uploader, chooseImage } from '@util'
+import { autoLoading, uploader, chooseImage } from '@/util'
 
 // 上传图片
 Component({

@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { request } from '@util'
+import { request } from '@/util'
 
 export default new class CreateOrderStore {
 
