@@ -6,6 +6,7 @@ module.exports = {
     ['module-resolver', {
       'root': ['./src'],
       'alias': {
+        '@': './src',
         '@util': './src/util/index.js',
         '@store': './src/store/index.js',
       },

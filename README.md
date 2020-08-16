@@ -10,7 +10,7 @@
 
 - 使用微信开发者工具导入当前目录即可
 
-## util/page.js
+## helper/page.js
 
 - 对小程序的 Page 进行一层拦截，注入 mobx 的 autorun
 - 然后在 app.js 中引入，这样所有的页面使用的 Page 就是这个被修饰过的

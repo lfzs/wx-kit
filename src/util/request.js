@@ -1,4 +1,5 @@
-import { wxp, baseURL, token } from '@util'
+import { wxp, token } from '@util'
+import { baseURL } from '@/env'
 
 function urlJoin(baseURL, url) {
   url = url[0] === '/' ? url.slice(1) : url
