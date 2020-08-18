@@ -21,7 +21,7 @@ Component({
   },
 
   methods: {
-    async chooseImage() {
+    async onChoose() {
       const { limit, images, size } = this.data
       const maxCount = limit - images.length
       if (maxCount < 1) return // 不能在选择了
@@ -29,7 +29,7 @@ Component({
       this.upload(tempFilePaths)
     },
 
-    async retryChooseImage(e) {
+    async onRetryChoose(e) {
       const { index } = e.currentTarget.dataset
       const { size, images, errImages } = this.data
       const tempFilePaths = await chooseImage({ maxCount: 1, maxSize: size })
