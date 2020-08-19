@@ -7,7 +7,7 @@ Component({
     },
     max: {
       type: Number,
-      value: Infinity,
+      value: 999,
     },
     min: {
       type: Number,

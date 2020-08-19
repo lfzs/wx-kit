@@ -15,7 +15,7 @@
       </view>
     </view>
 
-    <view class="icon-close">
+    <view class="icon-close" wx:if="{{ closeable }}">
       <img-icon name="icon-close" ext="svg" size="10" />
     </view>
   </view>
