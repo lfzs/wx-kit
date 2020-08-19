@@ -2,6 +2,7 @@
 Component({
   properties: {
     show: Boolean,
+    closeable: Boolean, // 是否显示关闭按钮
   },
 
   methods: {

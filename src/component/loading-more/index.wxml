@@ -7,7 +7,6 @@
 </view>
 
 <view class="loading flex-center" wx:else>
-  <!-- <mp-loading /> -->
   <image src="/image/icon-loading-more.gif" class="icon-loading" />
   加载中...
 </view>

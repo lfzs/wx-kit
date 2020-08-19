@@ -28,7 +28,9 @@
 
     "enablePullDownRefresh": false,
     "onReachBottomDistance": 200,
-    "pageOrientation": "portrait"
+    "pageOrientation": "portrait",
+
+    "initialRenderingCache": "static"
   },
   "tabBar": {
     "color": "#999",
@@ -58,6 +60,7 @@
     "img-icon": "/component/img-icon/index",
     "popup": "/component/popup/index",
     "popup-share": "/component/popup-share/index",
-    "loading-more": "/component/loading-more/index"
+    "loading-more": "/component/loading-more/index",
+    "fixed-bottom": "/component/fixed-bottom/index"
   }
 }
