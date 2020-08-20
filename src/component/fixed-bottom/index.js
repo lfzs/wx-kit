@@ -1,9 +1,5 @@
-// 吸底占位（该组件需要放置到非 tabbar 页面最底部）
+// 吸底占位（该组件需要放置到非 tabbar 页面最底部）使用这个这个组件的页面 css 需要添加 `page { padding-bottom: 0; }`
 Component({
-  options: {
-    styleIsolation: 'shared',
-  },
-
   data: {
     height: 0, // 单位 px
   },
