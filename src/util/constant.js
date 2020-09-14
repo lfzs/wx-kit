@@ -1,7 +1,7 @@
 export const APP_NAME = 'wx-kit'
-export const TOKEN_KEY = `token_${process.env.TARGET_ENV}`
-export const LANGUAGE = `language_${process.env.TARGET_ENV}`
-export const ADD_TO_MY_MINIPROGRAM = `add_to_my_miniprogram_${process.env.TARGET_ENV}`
+export const TOKEN_KEY = `token_${process.env.APP_ENV}`
+export const LANGUAGE = `language_${process.env.APP_ENV}`
+export const ADD_TO_MY_MINIPROGRAM = `add_to_my_miniprogram_${process.env.APP_ENV}`
 export const TAB_PAGES = [
   '/page/main/home/home',
   '/page/main/mine/mine',

@@ -12,7 +12,7 @@ const project = new ci.Project({
   privateKeyPath: 'private.key',
 })
 
-const isProduction = process.env.TARGET_ENV === 'production'
+const isProduction = process.env.APP_ENV === 'production'
 
 ci.upload({
   project,
