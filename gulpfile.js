@@ -25,10 +25,10 @@ const paths = {
   other: ['src/**/*.json', 'src/**/*.wxss', 'src/**/*.wxs', 'src/**/*.{png,svg,jpg,jpeg,gif}'],
 }
 
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.TARGET_ENV === 'development'
 
 const webpackConfig = {
-  // mode: process.env.NODE_ENV === 'development' ? 'development' : 'production', devtool: false,
+  // mode: process.env.TARGET_ENV === 'development' ? 'development' : 'production', devtool: false,
   mode: 'production',
   output: {
     filename: '[name].js',
