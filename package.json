@@ -17,8 +17,8 @@
     "commit-msg": "echo $HUSKY_GIT_PARAMS"
   },
   "lint-staged": {
-    "*.less": "stylelint",
-    "*.js": "eslint"
+    "*.less": "stylelint --max-warnings 0",
+    "*.js": "eslint --max-warnings 0"
   },
   "license": "MIT",
   "devDependencies": {
