@@ -6,10 +6,11 @@ const API_SCOP = {
   chooseLocation: ['scope.userLocation', '位置信息'],
   startLocationUpdateBackground: ['scope.userLocationBackground', '位置信息'],
 
-  chooseAddress: ['scope.address', '通讯地址'],
-
-  chooseInvoiceTitle: ['scope.invoiceTitle', '发票抬头'],
-  chooseInvoice: ['scope.invoice', '发票信息'],
+  // 2020/9/25 后不需要授权了
+  // https://developers.weixin.qq.com/community/develop/doc/000c0a0a590490590d0ba0c3d51801?blockType=1
+  // chooseAddress: ['scope.address', '通讯地址'],
+  // chooseInvoiceTitle: ['scope.invoiceTitle', '发票抬头'],
+  // chooseInvoice: ['scope.invoice', '发票信息'],
 
   getWeRunData: ['scope.werun', '微信运动步数'],
   startRecord: ['scope.record', '麦克风'],

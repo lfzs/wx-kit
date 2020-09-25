@@ -25,7 +25,7 @@ module.exports = {
     'arrow-spacing': 2,
     'block-spacing': 2,
     'brace-style': [2, '1tbs', { 'allowSingleLine': true }],
-    'comma-dangle': [2, 'always-multiline'],
+    'comma-dangle': [2, 'only-multiline'],
     'comma-spacing': 2,
     'computed-property-spacing': 2,
     'dot-location': [2, 'property'],
