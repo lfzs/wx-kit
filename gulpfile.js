@@ -31,7 +31,7 @@ const webpackConfig = {
   // mode: process.env.APP_ENV === 'development' ? 'development' : 'production', devtool: false,
   mode: 'production',
   output: {
-    filename: '[name].js',
+    filename: 'bundle/[name].js',
     libraryTarget: 'commonjs2',
   },
 }
@@ -75,7 +75,7 @@ const getNpm = function() {
 
     // 引入包路径替换
     const zIndex = path.relative(file.dirname, file.base).split(path.sep).join('/')
-    const newContents = contents.replace(/require\("(?!(\.|\/))/g, `require("${zIndex || '.'}/`) // 替换包的路径 非形如 . 或 / 开头
+    const newContents = contents.replace(/require\("(?!(\.|\/))/g, `require("${zIndex || '.'}/bundle/`) // 替换包的路径 非形如 . 或 / 开头
     file.contents = Buffer.from(newContents)
 
     // 构造入口

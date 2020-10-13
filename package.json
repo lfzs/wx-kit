@@ -40,7 +40,7 @@
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "del": "^6.0.0",
-    "eslint": "^7.10.0",
+    "eslint": "^7.11.0",
     "eslint-plugin-import": "^2.22.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -61,12 +61,12 @@
     "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0",
     "through2": "^4.0.2",
-    "webpack": "^4.44.2"
+    "webpack": "^5.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.11.2",
-    "big.js": "^6.0.0",
-    "dayjs": "^1.9.1",
+    "big.js": "^6.0.1",
+    "dayjs": "^1.9.2",
     "lodash": "^4.17.20",
     "mobx": "^4.15.7"
   }
