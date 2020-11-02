@@ -30,6 +30,7 @@ const isDev = process.env.APP_ENV === 'development'
 const webpackConfig = {
   // mode: process.env.APP_ENV === 'development' ? 'development' : 'production', devtool: false,
   mode: 'production',
+  target: 'web',
   output: {
     filename: 'bundle/[name].js',
     libraryTarget: 'commonjs2',

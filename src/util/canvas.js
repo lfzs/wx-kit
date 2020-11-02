@@ -64,15 +64,22 @@ function drawImage(config) {
 }
 
 function drawText(config) {
-  const { text, fontSize = 10, left, top, color, maxWidth, maxLine, textAlign = 'left', lineHeight = config.fontSize, baseline = 'top' } = config
+  const { text, left, top, color, maxWidth, maxLine, strokeColor, lineWidth = 1, textAlign = 'left', fontSize = 10, lineHeight = config.fontSize || 10, baseline = 'top' } = config
   CTX.save()
   CTX.textAlign = textAlign
   CTX.fillStyle = color
+  CTX.lineWidth = lineWidth
+  CTX.strokeStyle = strokeColor
   CTX.textBaseline = baseline
   CTX.font = `${fontSize}px sans-serif` // 斜体、加粗 真机暂时无效
 
   const lines = getTextLines(canvas, { text, fontSize, maxWidth, maxLine })
-  lines.map((item, index) => CTX.fillText(item, left, top + (lineHeight * index), maxWidth))
+
+  lines.map((item, index) => {
+    const args = [item, left, top + (lineHeight * index)].concat(maxWidth === undefined ? [] : [maxWidth]) // maxWidth 要么有值要么不传，传 undefined 真机无效
+    CTX.fillText(...args)
+    strokeColor && CTX.strokeText(...args) // 有设置描边颜色，就描边(配合 lineWidth 可以用来实现文字加粗)
+  })
   CTX.restore()
 }
 
