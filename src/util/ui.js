@@ -3,7 +3,7 @@ export default new class {
   #menuButtonInfo = {} // 右上角胶囊信息
   #navbarInfo = {} // 自定义导航条信息 单位 px
 
-  _setSystemInfo() {
+  #setSystemInfo() {
     if (this.#systemInfo.platform) return
 
     try {
@@ -15,7 +15,7 @@ export default new class {
     }
   }
 
-  _setMenuButtonInfo() {
+  #setMenuButtonInfo() {
     if (this.#menuButtonInfo.height) return
 
     try {
@@ -27,11 +27,11 @@ export default new class {
     }
   }
 
-  _setNavbarInfo() {
+  #setNavbarInfo() {
     if (this.#navbarInfo.topGap) return
 
-    this._setSystemInfo()
-    this._setMenuButtonInfo()
+    this.#setSystemInfo()
+    this.#setMenuButtonInfo()
     const isIOS = this._isIOS()
     let { statusBarHeight, windowWidth } = this.#systemInfo
     const { width, height, top, right } = this.#menuButtonInfo
@@ -52,23 +52,23 @@ export default new class {
   }
 
   _isIOS() {
-    if (!this.#systemInfo.platform) this._setSystemInfo()
+    if (!this.#systemInfo.platform) this.#setSystemInfo()
     const { platform } = this.#systemInfo
     return platform.toUpperCase() === 'IOS' || platform.toUpperCase() === 'DEVTOOLS'
   }
 
   getSystemInfo() {
-    this._setSystemInfo()
+    this.#setSystemInfo()
     return this.#systemInfo
   }
 
   getMenuButtonInfo() {
-    this._setMenuButtonInfo()
+    this.#setMenuButtonInfo()
     return this.#menuButtonInfo
   }
 
   getNavbarInfo() {
-    this._setNavbarInfo()
+    this.#setNavbarInfo()
     return this.#navbarInfo
   }
 }

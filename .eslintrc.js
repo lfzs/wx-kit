@@ -5,7 +5,7 @@ module.exports = {
     'plugin:import/warnings',
   ],
 
-  'parser': 'babel-eslint',
+  'parser': '@babel/eslint-parser',
   'parserOptions': {
     'sourceType': 'module',
     'ecmaFeatures': {
@@ -72,11 +72,11 @@ module.exports = {
   },
 
   'globals': {
-    'App': true,
-    'wx': true,
-    'getApp': true,
-    'Page': true,
-    'Component': true,
-    'getCurrentPages': true,
+    'App': 'readonly',
+    'wx': 'readonly',
+    'getApp': 'readonly',
+    'getCurrentPages': 'readonly',
+    'Page': 'writable',
+    'Component': 'writable',
   },
 }
