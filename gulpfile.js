@@ -75,7 +75,7 @@ const getNpm = function() {
     const names = (contents.match(reg) || []).filter(i => /require\("(?!(\.|\/))/.test(i)).map(i => i.split('"')[1])
 
     // 引入包路径替换
-    const zIndex = path.relative(file.dirname, file.base).split(path.sep).join('/')
+    const zIndex = path.posix.relative(file.dirname, file.base)
     const newContents = contents.replace(/require\("(?!(\.|\/))/g, `require("${zIndex || '.'}/bundle/`) // 替换包的路径 非形如 . 或 / 开头
     file.contents = Buffer.from(newContents)
 
