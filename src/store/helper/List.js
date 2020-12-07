@@ -11,6 +11,10 @@ export default class {
 
   isNeedAuth = undefined
 
+  setParam(param = {}) {
+    this.param = { ...this.param, ...param }
+  }
+
   fetchData = flow(function* () {
     this.state = 'pending'
     try {
