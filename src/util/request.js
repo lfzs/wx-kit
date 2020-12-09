@@ -16,7 +16,7 @@ async function request(config) {
 }
 
 async function handleResponse(res, config) {
-  const { data, statusCode, header } = res
+  const { data, statusCode } = res
 
   if (statusCode === 401) {
     // 向后台换取 token 的接口是否需要用加密数据。保留一种即可。需要
@@ -35,8 +35,7 @@ async function handleResponse(res, config) {
   }
 
   if (statusCode >= 400 && statusCode < 600) throw { ...data, statusCode } // 错误
-  if (header['X-Page']) res.meta = { per_page: +header['X-Per-Page'], total: +header['X-Total'] }
-  return res
+  return data
 }
 
 request.get = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'GET' })
