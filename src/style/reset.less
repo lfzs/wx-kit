@@ -4,7 +4,7 @@ page {
   height: auto;
   color: @text;
   font-size: 12px;
-  line-height: 1.15;
+  line-height: 1; // 默认行高设为 1，多行的行高需要手动去设置。行内元素高度计算复杂，建议行内元素修改为块块级元素
   background-color: @bg;
   box-sizing: border-box;
   padding-bottom: env(safe-area-inset-bottom); // 兼容 iphoneX 类的 home indicator

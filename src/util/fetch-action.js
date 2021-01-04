@@ -4,7 +4,7 @@ export default function(target, name, descriptor) { // target 为类的原型对
   const { value } = descriptor
   if (typeof value !== 'function') throw new Error(`${name} is not a function`)
 
-  target.tryFetchData = function(...args) { return this._state === 'done' ? { data: this.data } : this.fetchData(...args) } // 注意:请求过，只会返回 data 字段
+  target.tryFetchData = function(...args) { return this._state === 'done' ? this.data : this.fetchData(...args) } // 注意:请求过，只会返回 data 字段
 
   descriptor.value = flow(function* (...args) {
     this._state = 'pending'
