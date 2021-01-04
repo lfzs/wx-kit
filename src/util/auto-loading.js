@@ -1,6 +1,6 @@
 import { wxp, toast, getErrorMessage } from '@/util'
 
-const ignoreKeys = []
+const ignoreKeys = ['ignore']
 
 async function loading(promise, title = '加载中', successText) {
   try {

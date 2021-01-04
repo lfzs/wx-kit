@@ -7,6 +7,7 @@ module.exports = {
 
   'parser': '@babel/eslint-parser',
   'parserOptions': {
+    'ecmaVersion': 2021,
     'sourceType': 'module',
     'ecmaFeatures': {
       'legacyDecorators': true,
@@ -14,7 +15,7 @@ module.exports = {
   },
 
   'env': {
-    'es6': true,
+    'es2021': true,
     'node': true,
   },
 
