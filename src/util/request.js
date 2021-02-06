@@ -7,9 +7,7 @@ function urlJoin(baseURL, url) {
 }
 
 async function request(config) {
-
-  const Authorization = (config.isNeedAuth ?? true) ? await token.getToken() : '' // isNeedAuth 用来配置是否需要带着 token 信息访问接口
-  config.header = { ...config.header, Authorization }
+  config.header = { ...config.header, Authorization: token.getToken() }
 
   const res = await wxp.request(config)
   return handleResponse(res, config)
