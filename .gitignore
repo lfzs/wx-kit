@@ -5,3 +5,4 @@ dist/
 .idea/
 jsconfig.json
 project.config.json
+project.private.config.json

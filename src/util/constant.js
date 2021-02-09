@@ -1,7 +1,16 @@
+const flag = process.env.APP_ENV.toLocaleUpperCase()
+
 export const APP_NAME = 'wx-kit'
-export const TOKEN_KEY = `token_${process.env.APP_ENV}`
-export const LANGUAGE = `language_${process.env.APP_ENV}`
-export const ADD_TO_MY_MINIPROGRAM = `add_to_my_miniprogram_${process.env.APP_ENV}`
+
+export const HOST = {
+  DEVELOPMENT: '',
+  STAGING: '',
+  PRODUCTION: '',
+}[flag]
+
+export const TOKEN_KEY = `token_${flag}`
+export const LANGUAGE = `language_${flag}`
+export const ADD_TO_MY_MINIPROGRAM = `add_to_my_miniprogram_${flag}`
 export const TAB_PAGES = [
   '/page/main/home/home',
   '/page/main/mine/mine',

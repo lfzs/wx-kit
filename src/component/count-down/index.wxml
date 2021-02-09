@@ -1,2 +1,2 @@
-<wxs src="../../wxs/time.wxs" module="T" />
+<wxs src="/wxs/time.wxs" module="T" />
 <text class="count-down" wx:if="{{ second }}">{{ T.formatSecond(second, unit) }}</text>

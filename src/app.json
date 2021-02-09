@@ -28,9 +28,7 @@
 
     "enablePullDownRefresh": false,
     "onReachBottomDistance": 200,
-    "pageOrientation": "portrait",
-
-    "initialRenderingCache": "static"
+    "pageOrientation": "portrait"
   },
   "tabBar": {
     "color": "#999",

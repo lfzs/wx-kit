@@ -1,5 +1,6 @@
-import { wxp, token } from '@/util'
-import { baseURL } from '@/env'
+import { wxp, token, HOST } from '@/util'
+
+const BASE_URL = `${HOST}/app/api/v1`
 
 function urlJoin(baseURL, url) {
   url = url[0] === '/' ? url.slice(1) : url
@@ -7,9 +8,8 @@ function urlJoin(baseURL, url) {
 }
 
 async function request(config) {
-
-  const Authorization = (config.isNeedAuth ?? true) ? await token.getToken() : '' // isNeedAuth 用来配置是否需要带着 token 信息访问接口
-  config.header = { ...config.header, Authorization }
+  const token = token.getToken()
+  if (token) config.header.Authorization = token
 
   const res = await wxp.request(config)
   return handleResponse(res, config)
@@ -38,8 +38,8 @@ async function handleResponse(res, config) {
   return data
 }
 
-request.get = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'GET' })
-request.post = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'POST' })
-request.put = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'PUT' })
-request.delete = (url, data, config) => request({ ...config, url: urlJoin(baseURL, url), data, method: 'DELETE' })
+request.get = (url, data, config) => request({ ...config, url: urlJoin(BASE_URL, url), data, method: 'GET' })
+request.post = (url, data, config) => request({ ...config, url: urlJoin(BASE_URL, url), data, method: 'POST' })
+request.put = (url, data, config) => request({ ...config, url: urlJoin(BASE_URL, url), data, method: 'PUT' })
+request.delete = (url, data, config) => request({ ...config, url: urlJoin(BASE_URL, url), data, method: 'DELETE' })
 export default request

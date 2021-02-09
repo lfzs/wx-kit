@@ -8,9 +8,11 @@
     "postcss": false,
     "coverView": true,
     "enhance": false,
+    "uploadWithSourceMap': false,
     "nodeModules": false,
 		"showShadowRootInWxmlPanel": false,
     "minified": false,
+    "minifyWXSS": false,
     "useCompilerModule": false
   },
   "miniprogramRoot": "./dist/",
