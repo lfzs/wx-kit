@@ -5,18 +5,17 @@ module.exports = {
     'plugin:import/warnings',
   ],
 
+  'env': {
+    'es2020': true,
+    'node': true,
+  },
+
   'parser': '@babel/eslint-parser',
   'parserOptions': {
-    'ecmaVersion': 2021,
     'sourceType': 'module',
     'ecmaFeatures': {
       'legacyDecorators': true,
     },
-  },
-
-  'env': {
-    'es2021': true,
-    'node': true,
   },
 
   'rules': {
