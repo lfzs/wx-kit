@@ -35,6 +35,11 @@ const webpackConfig = {
     filename: 'bundle/[name].js',
     libraryTarget: 'commonjs2',
   },
+  module: {
+    rules: [
+      { test: /mobx/, use: 'babel-loader' }, // mobx6 使用了全局变量(小程序没有全局变量)，通过 babel 转译实现
+    ],
+  },
 }
 
 function handleError(err) {

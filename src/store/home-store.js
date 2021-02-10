@@ -1,8 +1,12 @@
-import { observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { fetchAction, request } from '@/util'
 
 export default new class {
-  @observable data = {}
+  data = {}
+
+  constructor() {
+    makeAutoObservable(this)
+  }
 
   @fetchAction
   fetchData() {

@@ -1,19 +1,23 @@
-import { computed, observable, flow, action } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { request } from '@/util'
 
 export default class {
-  @observable data = []
-  @observable state = 'pending'
-  @observable meta = { total: 0, per_page: 10 }
+  data = []
+  state = 'pending'
+  meta = { total: 0, per_page: 10 }
 
   api = ''
   param = {}
+
+  constructor() {
+    makeAutoObservable(this)
+  }
 
   setParam(param = {}) {
     this.param = { ...this.param, ...param }
   }
 
-  fetchData = flow(function* () {
+  * fetchData() {
     this.state = 'pending'
     try {
       const { data, meta } = yield request.get(this.api, { offset: 0, per_page: this.meta.per_page, ...this.param })
@@ -24,13 +28,13 @@ export default class {
       this.state = 'error'
       throw error
     }
-  })
+  }
 
   tryFetchData() {
     return this.state !== 'done' && this.fetchData()
   }
 
-  fetchMoreData = flow(function* () {
+  * fetchMoreData() {
     if (this.state === 'pending') return
     if (!this.canLoadmore) return
 
@@ -44,7 +48,7 @@ export default class {
       this.state = 'error'
       throw error
     }
-  })
+  }
 
   findItemById(id) {
     return this.data.find(item => +item.id === +id)
@@ -54,7 +58,6 @@ export default class {
     return this.data.findIndex(item => +item.id === +id)
   }
 
-  @action
   removeItemById(id) {
     const index = this.findIndexById(id)
     if (index > -1) {
@@ -63,13 +66,11 @@ export default class {
     }
   }
 
-  @action
   replaceItem(newItem) {
     const index = this.data.findIndex(item => +item.id === +newItem.id)
     if (index > -1) this.data.splice(index, 1, newItem)
   }
 
-  @action
   unshiftOrUpdate(newItem) {
     const index = this.data.findIndex(item => +item.id === +newItem.id)
     if (index > -1) {
@@ -80,8 +81,7 @@ export default class {
     }
   }
 
-  @computed
-  get listStatus() {
+  get status() {
     return {
       isNoMore: this.state === 'done' && this.data.length >= this.meta.total,
       isLoading: this.state === 'pending',
@@ -89,7 +89,6 @@ export default class {
     }
   }
 
-  @computed
   get canLoadmore() {
     return this.state === 'done' && this.data.length < this.meta.total
   }
