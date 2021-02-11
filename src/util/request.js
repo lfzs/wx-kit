@@ -8,8 +8,8 @@ function urlJoin(baseURL, url) {
 }
 
 async function request(config) {
-  const token = token.getToken()
-  if (token) config.header.Authorization = token
+  const t = token.getToken()
+  if (t) config.header.Authorization = t
 
   const res = await wxp.request(config)
   return handleResponse(res, config)

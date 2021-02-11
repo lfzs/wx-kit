@@ -1,9 +1,13 @@
-import { observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { fetchAction, request } from '@/util'
 import { Cache } from '@/store'
 
 export default class extends Cache {
-  @observable data = {}
+  data = {}
+  constructor() {
+    super()
+    makeAutoObservable(this)
+  }
 
   @fetchAction
   fetchData() {

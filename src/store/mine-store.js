@@ -1,15 +1,19 @@
-import { observable, flow } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { fetchAction, request } from '@/util'
 
 export default new class {
-  @observable data = {}
+  data = {}
+
+  constructor() {
+    makeAutoObservable(this)
+  }
 
   @fetchAction
   fetchData() {
     return request.get('user')
   }
 
-  updateUserInfo = flow(function* (userInfo = {}) {
+  * updateUserInfo(userInfo = {}) {
     if (userInfo.avatarUrl) {
       userInfo.avatar = userInfo.avatarUrl
       userInfo.nickname = userInfo.nickName
@@ -18,5 +22,5 @@ export default new class {
     }
     const { data } = yield request.put('user', userInfo)
     this.data = data
-  })
+  }
 }

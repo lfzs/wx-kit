@@ -8,7 +8,7 @@
     "postcss": false,
     "coverView": true,
     "enhance": false,
-    "uploadWithSourceMap': false,
+    "uploadWithSourceMap": false,
     "nodeModules": false,
 		"showShadowRootInWxmlPanel": false,
     "minified": false,

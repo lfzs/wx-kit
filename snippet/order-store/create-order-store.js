@@ -1,17 +1,19 @@
-import { observable, action } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { request } from '@/util'
 
 export default new class CreateOrderStore {
 
-  @observable data = {} // 预览订单的结果
-  @observable body = {} // 预览订单的参数
+  data = {} // 预览订单的结果
+  body = {} // 预览订单的参数
 
-  @action
+  constructor() {
+    makeAutoObservable(this)
+  }
+
   updateBody(body) {
     this.body = { ...this.body, ...body }
   }
 
-  @action
   clear() {
     this.data = {}
     this.body = {
@@ -37,7 +39,6 @@ export default new class CreateOrderStore {
     return data
   }
 
-  @action
   after(data) {
     if (this.body.is_preview) {
       this.data = data.data

@@ -24,7 +24,7 @@
       bindscrolltolower="onLoadMore"
     >
       <template is="item" wx:for="{{ item.data }}" wx:key="id" wx:for-item="value" data="{{ ...value }}" />
-      <loading-more listStatus="{{ item.listStatus }}" emptyText="暂无数据" />
+      <loading-more status="{{ item.status }}" emptyText="暂无数据" />
 
     </scroll-view>
   </swiper-item>

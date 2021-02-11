@@ -1,9 +1,14 @@
-import { observable, flow } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { fetchAction, request, subscribeMessageModal, autoLoading } from '@/util'
 import { Cache, waitPayOrderListStore, allOrderListStore, waitConfirmOrderListStore, waitSendOrderListStore, PayOrderStore, configStore } from '@/store'
 
 export default class extends Cache {
-  @observable data = {}
+  data = {}
+
+  constructor() {
+    super()
+    makeAutoObservable(this)
+  }
 
   @fetchAction
   fetchData() {
@@ -11,20 +16,20 @@ export default class extends Cache {
   }
 
   // 待付款 => 取消订单
-  cancelOrder = flow(function* () {
+  * cancelOrder() {
     const { data } = yield request.put(`orders/${this.id}/close`)
     this.data = data
     waitPayOrderListStore.removeItemById(this.id)
     allOrderListStore.replaceItem(data)
-  })
+  }
 
   // 确认收货
-  confirmOrder = flow(function* () {
+  * confirmOrder() {
     const { data } = yield request.put(`orders/${this.id}/confirm_goods`)
     this.data = data
     waitConfirmOrderListStore.removeItemById(this.id)
     allOrderListStore.replaceItem(data)
-  })
+  }
 
   // 支付订单
   async payOrder() {

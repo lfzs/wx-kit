@@ -1,7 +1,7 @@
 // 列表滚动加载底部状态
 Component({
   properties: {
-    listStatus: Object,
+    status: Object,
     emptyText: String,
 
     reachBottomText: {

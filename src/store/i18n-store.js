@@ -1,13 +1,14 @@
-import { observable, action } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { LANGUAGE, LOCAL, getCurrentPageRoute, tabPages, isTabPage, ui } from '@/util'
 
 export default new class {
-  @observable language = 'zh' // 默认的语言 zh en
+  language = 'zh' // 默认的语言 zh en
 
   #needUpdateNavigationBar = false // 是否需要更新标题
   #needUpdateTabBar = false // 是否需要更新 tabbar
 
   constructor() {
+    makeAutoObservable
     // this.init()
   }
 
@@ -16,7 +17,6 @@ export default new class {
     if (prev !== this.language) this.setLanguage(prev)
   }
 
-  @action
   setLanguage(language) {
     if (language === this.language) return
     this.language = language
@@ -52,6 +52,6 @@ function getPrevLanguage() {
   if (prev) return prev
 
   const { language } = ui.getSystemInfo()
-  if (language === 'zh_CN') return 'zh'
+  if (language === 'zh') return 'zh'
   if (language === 'en') return 'en'
 }

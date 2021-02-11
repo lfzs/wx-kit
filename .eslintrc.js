@@ -22,6 +22,7 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/no-duplicates': 2,
     'array-bracket-spacing': 2,
+
     'arrow-spacing': 2,
     'block-spacing': 2,
     'brace-style': [2, '1tbs', { 'allowSingleLine': true }],
@@ -45,7 +46,7 @@ module.exports = {
     'no-console': 2,
     'no-empty': [2, { 'allowEmptyCatch': true }],
     'no-lone-blocks': 2,
-    'no-multiple-empty-lines': [2, { 'max': 1, 'maxEOF': 1, 'maxBOF': 1 }],
+    'no-multiple-empty-lines': [2, { 'max': 1, 'maxBOF': 0, 'maxEOF': 1 }],
     'no-multi-spaces': 2,
     'no-new-wrappers': 2,
     'no-return-await': 2,
