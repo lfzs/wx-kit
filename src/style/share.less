@@ -21,6 +21,10 @@
   display: flex;
 }
 
+.flex-inline.flex-inline {
+  display: inline-flex;
+}
+
 .flex-center {
   .flex;
 
@@ -40,6 +44,13 @@
 
   align-items: center;
   justify-content: space-around;
+}
+
+.flex-evenly {
+  .flex;
+
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .flex-middle {
@@ -62,6 +73,7 @@
 
 .none-pointer-events {
   pointer-events: none;
+  cursor: not-allowed;
 }
 
 .margin-collapse::before {

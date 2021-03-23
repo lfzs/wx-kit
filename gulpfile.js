@@ -1,6 +1,6 @@
 const gulp = require('gulp')
 const changed = require('gulp-changed')
-const eslint = require('gulp-eslint')
+const eslint = require('gulp-eslint7')
 const gulpif = require('gulp-if')
 const babel = require('gulp-babel')
 const sourcemaps = require('gulp-sourcemaps')
